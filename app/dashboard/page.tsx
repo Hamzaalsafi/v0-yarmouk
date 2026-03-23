@@ -151,13 +151,11 @@ export default function DashboardPage() {
         {/* Logo */}
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="font-bold text-foreground text-sm leading-tight">جامعة اليرموك</h1>
-              <p className="text-xs text-muted-foreground">البوابة الإلكترونية</p>
-            </div>
+            <img 
+              src="/images/yu-logo.png" 
+              alt="جامعة اليرموك" 
+              className="h-10 w-auto"
+            />
           </Link>
         </div>
 
@@ -220,10 +218,11 @@ export default function DashboardPage() {
           <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <span className="font-bold text-foreground">جامعة اليرموك</span>
+                <img 
+                  src="/images/yu-logo.png" 
+                  alt="جامعة اليرموك" 
+                  className="h-10 w-auto"
+                />
               </Link>
               <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
                 <X className="h-5 w-5" />
