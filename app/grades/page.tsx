@@ -18,6 +18,8 @@ import {
   X,
   Users,
   Eye,
+  Globe,
+  LogOut,
   TrendingUp,
   TrendingDown,
   Minus,
@@ -49,6 +51,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { SidebarUserMenu } from "@/components/sidebar-user-menu"
 
 // Semesters
 const semesters = [
@@ -166,13 +169,15 @@ export default function GradesPage() {
             </Link>
           ))}
         </nav>
+
+
       </aside>
 
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
+          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl flex flex-col">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
@@ -190,7 +195,7 @@ export default function GradesPage() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <nav className="p-4 space-y-1">
+            <nav className="flex-1 overflow-y-auto p-4 space-y-1">
               {sidebarNav.map((item) => (
                 <Link
                   key={item.title}
@@ -207,6 +212,8 @@ export default function GradesPage() {
                 </Link>
               ))}
             </nav>
+
+
           </aside>
         </div>
       )}
@@ -226,24 +233,24 @@ export default function GradesPage() {
                 <Menu className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="font-semibold text-foreground">العلامات</h1>
-                <p className="text-xs text-muted-foreground">عرض العلامات والمعدل التراكمي</p>
+                <SidebarUserMenu />
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Download className="h-4 w-4 ml-1" />
-                تحميل
+              <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-1">
+                <Globe className="h-4 w-4" />
+                <span>EN</span>
               </Button>
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Printer className="h-4 w-4 ml-1" />
-                طباعة
-              </Button>
-              <Link href="/dashboard">
-                <Button variant="ghost" size="sm">
-                  <Home className="h-4 w-4 ml-1" />
-                  <span className="hidden sm:inline">الرئيسية</span>
+              <Link href="/change-password">
+                <Button variant="ghost" size="sm" className="hidden sm:flex">
+                  تغيير كلمة السر
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
+                  <LogOut className="h-4 w-4 ml-1" />
+                  <span className="hidden sm:inline">خروج</span>
                 </Button>
               </Link>
             </div>

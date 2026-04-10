@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Home,
   ClipboardList,
   Calendar,
@@ -17,6 +17,8 @@ import {
   X,
   Users,
   Eye,
+  Globe,
+  LogOut,
   Clock,
   MapPin,
   Download,
@@ -28,6 +30,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SidebarUserMenu } from "@/components/sidebar-user-menu"
 
 // Schedule Data
 const scheduleData = [
@@ -133,8 +136,8 @@ export default function SchedulePage() {
               key={item.title}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.active 
-                  ? 'bg-primary text-primary-foreground' 
+                item.active
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
@@ -143,13 +146,15 @@ export default function SchedulePage() {
             </Link>
           ))}
         </nav>
+
+
       </aside>
 
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
+          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl flex flex-col">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
@@ -167,14 +172,14 @@ export default function SchedulePage() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <nav className="p-4 space-y-1">
+            <nav className="flex-1 overflow-y-auto p-4 space-y-1">
               {sidebarNav.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    item.active 
-                      ? 'bg-primary text-primary-foreground' 
+                    item.active
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   onClick={() => setSidebarOpen(false)}
@@ -184,6 +189,7 @@ export default function SchedulePage() {
                 </Link>
               ))}
             </nav>
+
           </aside>
         </div>
       )}
@@ -203,24 +209,24 @@ export default function SchedulePage() {
                 <Menu className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="font-semibold text-foreground">الجدول الدراسي</h1>
-                <p className="text-xs text-muted-foreground">الفصل الثاني 2025/2026</p>
+                <SidebarUserMenu />
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Download className="h-4 w-4 ml-1" />
-                تحميل
+              <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-1">
+                <Globe className="h-4 w-4" />
+                <span>EN</span>
               </Button>
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Printer className="h-4 w-4 ml-1" />
-                طباعة
-              </Button>
-              <Link href="/exams">
-                <Button variant="secondary" size="sm">
-                  <FileText className="h-4 w-4 ml-1" />
-                  <span className="hidden sm:inline">جدول الامتحانات</span>
+              <Link href="/change-password">
+                <Button variant="ghost" size="sm" className="hidden sm:flex">
+                  تغيير كلمة السر
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
+                  <LogOut className="h-4 w-4 ml-1" />
+                  <span className="hidden sm:inline">خروج</span>
                 </Button>
               </Link>
             </div>
@@ -267,7 +273,7 @@ export default function SchedulePage() {
                     ) : (
                       <div className="space-y-3">
                         {dayData.courses.map((course, courseIndex) => (
-                          <div 
+                          <div
                             key={courseIndex}
                             className="flex items-center gap-4 p-3 bg-muted/50 rounded-lg"
                           >
@@ -311,8 +317,8 @@ export default function SchedulePage() {
                           الوقت
                         </th>
                         {days.map((day) => (
-                          <th 
-                            key={day} 
+                          <th
+                            key={day}
                             className={`p-3 text-center text-sm font-semibold border-b border-border ${
                               day === today ? 'bg-primary/10 text-primary' : 'text-foreground'
                             }`}
@@ -337,10 +343,10 @@ export default function SchedulePage() {
                               const [start] = c.time.split(' - ')
                               return start === time
                             })
-                            
+
                             return (
-                              <td 
-                                key={day} 
+                              <td
+                                key={day}
                                 className={`p-2 border-l border-border ${day === today ? 'bg-primary/5' : ''}`}
                               >
                                 {course && (

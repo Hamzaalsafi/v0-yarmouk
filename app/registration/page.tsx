@@ -26,6 +26,7 @@ import {
   Bell,
   HelpCircle,
   LogOut,
+  Globe,
   Menu,
   User,
   Info,
@@ -61,6 +62,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+import { SidebarUserMenu } from "@/components/sidebar-user-menu"
 
 // Available Courses (updated from latest department list)
 const courseCatalog = [
@@ -244,13 +246,14 @@ export default function RegistrationPage() {
             </Link>
           ))}
         </nav>
+
       </aside>
 
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
+          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl flex flex-col">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
@@ -268,7 +271,7 @@ export default function RegistrationPage() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <nav className="p-4 space-y-1">
+            <nav className="flex-1 overflow-y-auto p-4 space-y-1">
               {sidebarNav.map((item) => (
                 <Link
                   key={item.title}
@@ -285,6 +288,8 @@ export default function RegistrationPage() {
                 </Link>
               ))}
             </nav>
+
+
           </aside>
         </div>
       )}
@@ -304,16 +309,24 @@ export default function RegistrationPage() {
                 <Menu className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="font-semibold text-foreground">تسجيل المواد</h1>
-                <p className="text-xs text-muted-foreground">الفصل الثاني 2025/2026</p>
+                <SidebarUserMenu />
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <Link href="/dashboard">
-                <Button variant="ghost" size="sm">
-                  <Home className="h-4 w-4 ml-1" />
-                  <span className="hidden sm:inline">الرئيسية</span>
+              <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-1">
+                <Globe className="h-4 w-4" />
+                <span>EN</span>
+              </Button>
+              <Link href="/change-password">
+                <Button variant="ghost" size="sm" className="hidden sm:flex">
+                  تغيير كلمة السر
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
+                  <LogOut className="h-4 w-4 ml-1" />
+                  <span className="hidden sm:inline">خروج</span>
                 </Button>
               </Link>
             </div>
