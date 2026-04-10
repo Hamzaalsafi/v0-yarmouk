@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Search,
   Filter,
   Clock,
@@ -69,31 +69,49 @@ const courseCatalog = [
   { code: "IE 205", section: "1", name: "المشاغل الهندسية", credits: 2, days: "حد ثل", start: "14:30", end: "17:30", instructor: "سنان عبيدات", room: "مشاغل" },
   { code: "IE 205", section: "2", name: "المشاغل الهندسية", credits: 2, days: "حد ثل", start: "11:30", end: "14:30", instructor: "محمد يونس علي الدراغمة", room: "مشاغل" },
   { code: "IE 205", section: "3", name: "المشاغل الهندسية", credits: 2, days: "ثن ربع", start: "14:30", end: "17:30", instructor: "احمد عبدالحفيظ المومني", room: "مشاغل" },
-  { code: "IE 211", section: "1", name: "القياسات", credits: 2, days: "ثن ربع", start: "19:30", end: "20:30", instructor: "محمد يونس علي الدراغمة", room: "Online" },
+  { code: "IE 211", section: "1", name: "القياسات", credits: 2, days: "ثن ربع", start: "19:30", end: "20:30", instructor: "محمد يونس علي الدراغمة", room: "Oline" },
   { code: "IE 213", section: "1", name: "مختبرالقياسات", credits: 1, days: "حد", start: "14:30", end: "17:30", instructor: "عبدالله الخضر", room: "مختبر" },
   { code: "IE 213", section: "2", name: "مختبرالقياسات", credits: 1, days: "خمس", start: "14:30", end: "17:30", instructor: "سنان عبيدات", room: "مختبر" },
   { code: "IE 251", section: "1", name: "اساسيات الاحتمالات والاحصاء للمهندسين", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "عبدالله الخضر", room: "ه 403" },
   { code: "IE 262", section: "1", name: "علوم المواد الهندسية", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "محمد يونس علي الدراغمة", room: "ه 403" },
+  { code: "IE 263", section: "1", name: "مختبر المواد الهندسية", credits: 1, days: "حد", start: "14:30", end: "17:30", instructor: "عمار احمد الروسان", room: "مختبر" },
   { code: "IE 300", section: "1", name: "تأهيل وظيفي (3)", credits: 0, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
   { code: "IE 318", section: "1", name: "قياس وتحليل العمل", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "احمد عبدالحفيظ المومني", room: "هج 215" },
   { code: "IE 354", section: "1", name: "الإحصاء الهندسي التطبيقي", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "اسيل فايز خنفر", room: "ه 403" },
+  { code: "IE 354", section: "2", name: "الإحصاء الهندسي التطبيقي", credits: 3, days: "حد ثل خمس", start: "09:30", end: "10:30", instructor: "اسيل فايز خنفر", room: "هج 215" },
   { code: "IE 358", section: "1", name: "بحوث عمليات (1)", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "سنان عبيدات", room: "هج 322" },
-  { code: "IE 361", section: "1", name: "إدارة المشاريع الهندسية", credits: 3, days: "سبت ثن ربع", start: "19:30", end: "20:30", instructor: "الاء طويق", room: "Online" },
+  { code: "IE 358", section: "2", name: "بحوث عمليات (1)", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "عبدالله الخضر", room: "هج 401" },
+  { code: "IE 361", section: "1", name: "إدارة المشاريع الهندسية", credits: 3, days: "سبت ثن ربع", start: "19:30", end: "20:30", instructor: "الاء طويق", room: "Oline" },
   { code: "IE 364", section: "1", name: "تصميم أجزاء الاَلات", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "عمار احمد الروسان", room: "هج 321" },
   { code: "IE 366", section: "1", name: "عمليات التصنيع (1)", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "ايمن محمد زيوت", room: "هج 210" },
+  { code: "IE 367", section: "1", name: "مختبرعمليات التصنيع", credits: 1, days: "ثل", start: "14:30", end: "17:30", instructor: "عمار احمد الروسان", room: "مختبر" },
   { code: "IE 422", section: "1", name: "هندسة العوامل البشرية", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "الاء طويق", room: "هج 322" },
   { code: "IE 423", section: "1", name: "مختبر هندسة العوامل البشرية", credits: 1, days: "ثل", start: "14:30", end: "17:30", instructor: "عبدالله الخضر", room: "مختبر" },
   { code: "IE 432", section: "1", name: "اقتصاد هندسي", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "اسيل فايز خنفر", room: "هج 321" },
+  { code: "IE 432", section: "2", name: "اقتصاد هندسي", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "الاء طويق", room: "ه 209" },
+  { code: "IE 432", section: "3", name: "اقتصاد هندسي", credits: 3, days: "حد ثل خمس", start: "09:30", end: "10:30", instructor: "الاء طويق", room: "ه 403" },
   { code: "IE 432", section: "4", name: "اقتصاد هندسي", credits: 3, days: "ثن ربع", start: "12:30", end: "14:00", instructor: "محمد يونس علي الدراغمة", room: "هج 321" },
   { code: "IE 454", section: "1", name: "ضبط الجودة الإحصائي", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "احمد عبدالحفيظ المومني", room: "L 203" },
   { code: "IE 458", section: "1", name: "نظم المحاكاة", credits: 3, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
   { code: "IE 466", section: "1", name: "عمليات التصنيع (2)", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "ايمن محمد زيوت", room: "ه 502" },
   { code: "IE 478", section: "1", name: "الوثوقية وادامة الصيانة", credits: 3, days: "حد ثل خمس", start: "09:30", end: "10:30", instructor: "سنان عبيدات", room: "هج 322" },
+  { code: "IE 498", section: "1", name: "مشروع تخرج (1)", credits: 1, days: "", start: "", end: "", instructor: "ايمن محمد زيوت", room: "ميدان" },
+  { code: "IE 498", section: "2", name: "مشروع تخرج (1)", credits: 1, days: "", start: "", end: "", instructor: "اسيل فايز خنفر", room: "ميدان" },
+  { code: "IE 498", section: "3", name: "مشروع تخرج (1)", credits: 1, days: "", start: "", end: "", instructor: "غازي مقابله", room: "ميدان" },
+  { code: "IE 498", section: "4", name: "مشروع تخرج (1)", credits: 1, days: "", start: "", end: "", instructor: "سنان عبيدات", room: "ميدان" },
   { code: "IE 500", section: "3", name: "التدريب الميداني", credits: 3, days: "حد ثل خمس", start: "08:30", end: "17:30", instructor: "محمد يونس علي الدراغمة", room: "ميدان" },
+  { code: "IE 500", section: "4", name: "التدريب الميداني", credits: 3, days: "سبت ثن ربع", start: "08:30", end: "17:30", instructor: "محمد يونس علي الدراغمة", room: "ميدان" },
   { code: "IE 525", section: "1", name: "هندسة السلامة المهنية", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "الاء طويق", room: "هج 322" },
+  { code: "IE 534", section: "1", name: "مبادئ تحليل القرارات", credits: 3, days: "حد ثل خمس", start: "09:30", end: "10:30", instructor: "غازي مقابله", room: "م.ق 205" },
   { code: "IE 546", section: "1", name: "تخطيط المنشآت", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "عبدالله الخضر", room: "B 101" },
-  { code: "IE 568", section: "1", name: "تصميم المنتج", credits: 3, days: "حد ثل خمس", start: "08:30", end: "09:30", instructor: "غازي مقابله", room: "قاعة" },
+  { code: "IE 563", section: "1", name: "التصميم والتصنيع باستخدام الحاسوب", credits: 2, days: "حد", start: "11:30", end: "12:30", instructor: "ايمن محمد زيوت", room: "هج 208" },
+  { code: "IE 563L", section: "1", name: "مختبر التصميم والتصنيع باستخدام الحاسوب", credits: 0, days: "ثل خمس", start: "11:30", end: "12:30", instructor: "ايمن محمد زيوت", room: "هج 208" },
+  { code: "IE 568", section: "1", name: "تصميم المنتج", credits: 3, days: "حد ثل خمس", start: "08:30", end: "09:30", instructor: "غازي مقابله", room: "قاعه" },
   { code: "IE 572", section: "1", name: "تكنولوجيا الطاقة", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "امجد عبدالرحمن السكارنة", room: "هج 321" },
+  { code: "IE 598", section: "1", name: "مشروع تخرج (2)", credits: 3, days: "", start: "", end: "", instructor: "غازي مقابله", room: "ميدان" },
+  { code: "IE 598", section: "2", name: "مشروع تخرج (2)", credits: 3, days: "", start: "", end: "", instructor: "سنان عبيدات", room: "ميدان" },
+  { code: "IE 598", section: "3", name: "مشروع تخرج (2)", credits: 3, days: "", start: "", end: "", instructor: "ايمن محمد زيوت", room: "ميدان" },
+  { code: "IE 598", section: "4", name: "مشروع تخرج (2)", credits: 3, days: "", start: "", end: "", instructor: "اسيل فايز خنفر", room: "ميدان" },
   { code: "IE 599", section: "1", name: "موضوعات خاصة في الهندسة الصناعية", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "عمار احمد الروسان", room: "هج 321" },
   { code: "IEM 651", section: "1", name: "البحث والتحليل الاحصائي", credits: 3, days: "خمس", start: "14:30", end: "17:30", instructor: "ايمن محمد زيوت", room: "مختبر" },
 ]
@@ -156,7 +174,7 @@ export default function RegistrationPage() {
   const currentCredits = selectedCourses.reduce((sum, c) => sum + c.credits, 0)
 
   const filteredCourses = availableCourses.filter(course => {
-    const matchesSearch = course.name.includes(searchQuery) || 
+    const matchesSearch = course.name.includes(searchQuery) ||
                           course.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           course.instructor.includes(searchQuery)
     const matchesDepartment = selectedDepartment === "all" || course.department === selectedDepartment
@@ -168,7 +186,7 @@ export default function RegistrationPage() {
     if (!course.prerequisitesMet) return
     if (course.enrolled >= course.capacity) return
     if (selectedCourses.find(c => c.id === course.id)) return
-    
+
     // Check for time conflicts
     const hasConflict = selectedCourses.some(c => c.time === course.time)
     if (hasConflict) return
@@ -216,8 +234,8 @@ export default function RegistrationPage() {
               key={item.title}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.active 
-                  ? 'bg-primary text-primary-foreground' 
+                item.active
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
@@ -256,8 +274,8 @@ export default function RegistrationPage() {
                   key={item.title}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    item.active 
-                      ? 'bg-primary text-primary-foreground' 
+                    item.active
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   onClick={() => setSidebarOpen(false)}
@@ -324,8 +342,8 @@ export default function RegistrationPage() {
                 <div key={s.num} className="flex items-center">
                   <div className="flex flex-col items-center">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                      step >= s.num 
-                        ? 'bg-primary text-primary-foreground' 
+                      step >= s.num
+                        ? 'bg-primary text-primary-foreground'
                         : 'bg-muted text-muted-foreground'
                     }`}>
                       {step > s.num ? <Check className="h-5 w-5" /> : s.num}
@@ -437,14 +455,14 @@ export default function RegistrationPage() {
                     const isSelected = selectedCourses.find(c => c.id === course.id)
                     const isFull = course.enrolled >= course.capacity
                     const hasConflict = !isSelected && selectedCourses.some(c => c.time === course.time)
-                    
+
                     return (
-                      <Card 
-                        key={course.id} 
+                      <Card
+                        key={course.id}
                         className={`border-border/50 transition-all ${
-                          isSelected ? 'border-primary bg-primary/5' : 
+                          isSelected ? 'border-primary bg-primary/5' :
                           !course.prerequisitesMet ? 'opacity-60' :
-                          isFull ? 'opacity-75' : 
+                          isFull ? 'opacity-75' :
                           hasConflict ? 'border-destructive/30' : ''
                         }`}
                       >
@@ -457,7 +475,7 @@ export default function RegistrationPage() {
                                 <Badge variant="secondary" className="text-xs">شعبة {course.section}</Badge>
                               </div>
                               <p className="text-sm text-muted-foreground mb-2">{course.instructor}</p>
-                              
+
                               <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
                                 <span className="flex items-center gap-1">
                                   <Clock className="h-3 w-3" />
@@ -499,8 +517,8 @@ export default function RegistrationPage() {
                                 {course.credits} س.م
                               </Badge>
                               {isSelected ? (
-                                <Button 
-                                  variant="outline" 
+                                <Button
+                                  variant="outline"
                                   size="sm"
                                   onClick={() => removeCourse(course.id)}
                                   className="text-destructive hover:text-destructive"
@@ -509,7 +527,7 @@ export default function RegistrationPage() {
                                   إزالة
                                 </Button>
                               ) : (
-                                <Button 
+                                <Button
                                   size="sm"
                                   onClick={() => addCourse(course)}
                                   disabled={!course.prerequisitesMet || isFull || hasConflict || currentCredits + course.credits > maxCredits}
@@ -568,9 +586,9 @@ export default function RegistrationPage() {
                               <p className="text-sm font-medium text-foreground truncate">{course.name}</p>
                               <p className="text-xs text-muted-foreground">{course.code} - {course.credits} س.م</p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="icon" 
+                            <Button
+                              variant="ghost"
+                              size="icon"
                               className="h-8 w-8 text-muted-foreground hover:text-destructive"
                               onClick={() => removeCourse(course.id)}
                             >
@@ -582,8 +600,8 @@ export default function RegistrationPage() {
                     )}
                   </CardContent>
                   <CardFooter className="flex-col gap-2">
-                    <Button 
-                      className="w-full" 
+                    <Button
+                      className="w-full"
                       disabled={selectedCourses.length === 0}
                       onClick={() => setShowConfirmDialog(true)}
                     >
@@ -591,8 +609,8 @@ export default function RegistrationPage() {
                       تأكيد التسجيل
                     </Button>
                     {selectedCourses.length > 0 && (
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         className="w-full text-destructive hover:text-destructive"
                         onClick={() => setSelectedCourses([])}
                       >

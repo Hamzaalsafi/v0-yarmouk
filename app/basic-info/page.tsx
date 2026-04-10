@@ -34,10 +34,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const studentData = {
   name: "بركة محمود البطاينة",
-  id: "2021105432",
+  id: "20210000",
   college: "كلية الهندسة",
   major: "الهندسة الصناعية",
-  level: "السنة الرابعة",
+  level: "السنة الخامسة",
   currentSemester: "الفصل الثاني 2025/2026",
   totalCredits: 98,
   remainingCredits: 42,
@@ -46,7 +46,7 @@ const studentData = {
 
 const initialProfile = {
   nationalId: "9876543210",
-  birthDate: "2003-04-12",
+  birthDate: "2003-04-29",
   mobile: "0791234567",
   email: "student@yu.edu.jo",
   guardianMobile: "0797654321",

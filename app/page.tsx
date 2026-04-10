@@ -490,7 +490,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {[
-                { icon: Mail, title: "بريد الأساتذة", href: "https://outlook.com/yu.edu.jo" },
+                { icon: Mail, title: "بريد الأساتذة", href: "https://fmd.yu.edu.jo" },
                 { icon: Briefcase, title: "وظائف", href: "https://hr.yu.edu.jo/job/userpage/AdvertisementPage.aspx" },
                 { icon: Scale, title: "الأنظمة والقوانين", href: "https://law.yu.edu.jo/" },
                 { icon: Shield, title: "دليل الطالب", href: "https://www.yu.edu.jo/studentguide/" },

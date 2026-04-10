@@ -114,9 +114,9 @@ const quickActions = [
 
 // Upcoming Exams
 const upcomingExams = [
-  { course: "بحوث العمليات", code: "IE 401", date: "25 مارس 2026", time: "09:00 ص", room: "قاعة H201", daysLeft: 9 },
-  { course: "إدارة الجودة", code: "IE 403", date: "28 مارس 2026", time: "11:00 ص", room: "قاعة H105", daysLeft: 12 },
-  { course: "هندسة العوامل البشرية", code: "IE 405", date: "1 أبريل 2026", time: "09:00 ص", room: "قاعة H301", daysLeft: 16 },
+  { course: "بحوث عمليات (1)", code: "IE 358", date: "25 مارس 2026", time: "09:00 ص", room: "قاعة H201", daysLeft: 9 },
+  { course: "اقتصاد هندسي", code: "IE 432", date: "28 مارس 2026", time: "11:00 ص", room: "قاعة H105", daysLeft: 12 },
+  { course: "هندسة العوامل البشرية", code: "IE 422", date: "1 أبريل 2026", time: "09:00 ص", room: "قاعة H301", daysLeft: 16 },
 ]
 
 // Recent Announcements
@@ -536,7 +536,7 @@ export default function DashboardPage() {
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground">تنبيه غياب</h4>
                       <p className="text-sm text-muted-foreground mt-1">
-                        لديك 4 غيابات في مادة <span className="font-medium text-foreground">بحوث العمليات (IE 401)</span> من أصل 5 مسموحة.
+                        لديك 4 غيابات في مادة <span className="font-medium text-foreground">بحوث عمليات (1) (IE 358)</span> من أصل 5 مسموحة.
                       </p>
                       <Link href="/attendance">
                         <Button variant="outline" size="sm" className="mt-3">

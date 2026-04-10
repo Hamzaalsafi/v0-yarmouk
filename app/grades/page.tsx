@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   ChevronDown,
   Home,
   ClipboardList,
@@ -62,18 +62,18 @@ const semesters = [
 // Grades Data
 const gradesData: Record<string, typeof currentSemesterGrades> = {
   "2025-2": [
-    { code: "IE 401", name: "بحوث العمليات", credits: 3, midterm: 42, coursework: 18, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 403", name: "إدارة الجودة", credits: 3, midterm: 38, coursework: 17, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 405", name: "هندسة العوامل البشرية", credits: 3, midterm: 45, coursework: 19, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "MATH 301", name: "الإحصاء الهندسي", credits: 3, midterm: 35, coursework: 16, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 402", name: "مشروع التخرج 1", credits: 3, midterm: null, coursework: 85, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 318", name: "قياس وتحليل العمل", credits: 3, midterm: 42, coursework: 18, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 358", name: "بحوث عمليات (1)", credits: 3, midterm: 38, coursework: 17, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 432", name: "اقتصاد هندسي", credits: 3, midterm: 45, coursework: 19, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 205", name: "المشاغل الهندسية", credits: 2, midterm: 35, coursework: 16, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 423", name: "مختبر هندسة العوامل البشرية", credits: 1, midterm: null, coursework: 85, final: null, total: null, grade: null, status: "in-progress" },
   ],
   "2025-1": [
-    { code: "IE 301", name: "تصميم النظم الصناعية", credits: 3, midterm: 44, coursework: 18, final: 38, total: 92, grade: "A", status: "complete" },
-    { code: "IE 303", name: "هندسة الصيانة", credits: 3, midterm: 40, coursework: 17, final: 35, total: 85, grade: "B+", status: "complete" },
-    { code: "IE 305", name: "إدارة العمليات", credits: 3, midterm: 38, coursework: 16, final: 32, total: 78, grade: "B", status: "complete" },
-    { code: "MATH 203", name: "المعادلات التفاضلية", credits: 3, midterm: 42, coursework: 19, final: 36, total: 88, grade: "A-", status: "complete" },
-    { code: "IE 307", name: "السلامة الصناعية", credits: 3, midterm: 35, coursework: 15, final: 28, total: 70, grade: "C+", status: "complete" },
+    { code: "IE 318", name: "قياس وتحليل العمل", credits: 3, midterm: 44, coursework: 18, final: 38, total: 92, grade: 92, status: "complete" },
+    { code: "IE 354", name: "الإحصاء الهندسي التطبيقي", credits: 3, midterm: 40, coursework: 17, final: 35, total: 85, grade: 85, status: "complete" },
+    { code: "IE 358", name: "بحوث عمليات (1)", credits: 3, midterm: 38, coursework: 16, final: 32, total: 78, grade: 78, status: "complete" },
+    { code: "IE 432", name: "اقتصاد هندسي", credits: 3, midterm: 42, coursework: 19, final: 36, total: 88, grade: 88, status: "complete" },
+    { code: "IE 422", name: "هندسة العوامل البشرية", credits: 3, midterm: 35, coursework: 15, final: 28, total: 70, grade: 70, status: "complete" },
   ],
 }
 
@@ -82,8 +82,8 @@ const currentSemesterGrades = gradesData["2025-2"]
 // GPA Data
 const gpaData = {
   currentSemester: null, // In progress
-  cumulative: 3.45,
-  previousSemester: 3.52,
+  cumulative: 86.25,
+  previousSemester: 88.0,
   trend: "down" as "up" | "down" | "stable",
   standing: "جيد جداً"
 }
@@ -105,16 +105,6 @@ const sidebarNav = [
   { icon: HelpCircle, title: "المساعدة", href: "/help", active: false },
 ]
 
-// Grade Color Helper
-function getGradeColor(grade: string | null) {
-  if (!grade) return "bg-muted text-muted-foreground"
-  if (grade.startsWith("A")) return "bg-accent text-accent-foreground"
-  if (grade.startsWith("B")) return "bg-primary text-primary-foreground"
-  if (grade.startsWith("C")) return "bg-primary/80 text-primary-foreground"
-  if (grade.startsWith("D")) return "bg-secondary text-secondary-foreground"
-  return "bg-destructive text-destructive-foreground"
-}
-
 export default function GradesPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [selectedSemester, setSelectedSemester] = useState("2025-2")
@@ -122,27 +112,21 @@ export default function GradesPage() {
   const grades = gradesData[selectedSemester] || currentSemesterGrades
   const isCurrentSemester = selectedSemester === "2025-2"
 
-  // Calculate semester GPA for completed semesters
-  const calculateSemesterGPA = () => {
+  // Calculate semester average out of 100 for completed semesters
+  const calculateSemesterAverage = () => {
     if (isCurrentSemester) return null
-    const gradePoints: Record<string, number> = {
-      "A+": 4.0, "A": 4.0, "A-": 3.7,
-      "B+": 3.3, "B": 3.0, "B-": 2.7,
-      "C+": 2.3, "C": 2.0, "C-": 1.7,
-      "D+": 1.3, "D": 1.0, "F": 0
-    }
-    let totalPoints = 0
+    let weightedSum = 0
     let totalCredits = 0
     grades.forEach(g => {
-      if (g.grade && gradePoints[g.grade] !== undefined) {
-        totalPoints += gradePoints[g.grade] * g.credits
+      if (g.total !== null) {
+        weightedSum += g.total * g.credits
         totalCredits += g.credits
       }
     })
-    return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : null
+    return totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : null
   }
 
-  const semesterGPA = calculateSemesterGPA()
+  const semesterAverage = calculateSemesterAverage()
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -172,8 +156,8 @@ export default function GradesPage() {
               key={item.title}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.active 
-                  ? 'bg-primary text-primary-foreground' 
+                item.active
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
@@ -212,8 +196,8 @@ export default function GradesPage() {
                   key={item.title}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    item.active 
-                      ? 'bg-primary text-primary-foreground' 
+                    item.active
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   onClick={() => setSidebarOpen(false)}
@@ -294,15 +278,15 @@ export default function GradesPage() {
             <Card className="border-border/50">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-muted-foreground">معدل الفصل</span>
-                  {!isCurrentSemester && semesterGPA && (
+                  <span className="text-sm text-muted-foreground">متوسط الفصل</span>
+                  {!isCurrentSemester && semesterAverage && (
                     <Badge variant="secondary" className="text-xs">
-                      {Number(semesterGPA) >= 3.5 ? "ممتاز" : Number(semesterGPA) >= 3.0 ? "جيد جداً" : "جيد"}
+                      {Number(semesterAverage) >= 85 ? "ممتاز" : Number(semesterAverage) >= 75 ? "جيد جداً" : "جيد"}
                     </Badge>
                   )}
                 </div>
                 <p className="text-2xl font-bold text-foreground">
-                  {isCurrentSemester ? "---" : semesterGPA}
+                  {isCurrentSemester ? "---" : `${semesterAverage} / 100`}
                 </p>
                 {isCurrentSemester && (
                   <p className="text-xs text-muted-foreground mt-1">الفصل جاري</p>
@@ -323,7 +307,7 @@ export default function GradesPage() {
                   )}
                 </div>
                 <p className="text-2xl font-bold text-foreground">{gpaData.cumulative}</p>
-                <p className="text-xs text-muted-foreground mt-1">من 4.00</p>
+                <p className="text-xs text-muted-foreground mt-1">من 100</p>
               </CardContent>
             </Card>
 
@@ -331,7 +315,7 @@ export default function GradesPage() {
               <CardContent className="p-4">
                 <span className="text-sm text-muted-foreground">التقدير العام</span>
                 <p className="text-2xl font-bold text-foreground mt-2">{gpaData.standing}</p>
-                <p className="text-xs text-muted-foreground mt-1">Based on GPA</p>
+                <p className="text-xs text-muted-foreground mt-1">بناءً على المتوسط من 100</p>
               </CardContent>
             </Card>
 
@@ -406,7 +390,7 @@ export default function GradesPage() {
                         </TooltipProvider>
                       </TableHead>
                       <TableHead className="text-center">المجموع</TableHead>
-                      <TableHead className="text-center">التقدير</TableHead>
+                      <TableHead className="text-center">العلامة من 100</TableHead>
                       <TableHead className="text-center">الحالة</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -429,13 +413,9 @@ export default function GradesPage() {
                           {course.total !== null ? course.total : "---"}
                         </TableCell>
                         <TableCell className="text-center">
-                          {course.grade ? (
-                            <Badge className={getGradeColor(course.grade)}>
-                              {course.grade}
-                            </Badge>
-                          ) : (
-                            <span className="text-muted-foreground">---</span>
-                          )}
+                          {course.total !== null ? (
+                            <span className="font-semibold">{course.total}</span>
+                          ) : <span className="text-muted-foreground">---</span>}
                         </TableCell>
                         <TableCell className="text-center">
                           {course.status === "complete" ? (
@@ -454,32 +434,23 @@ export default function GradesPage() {
             </CardContent>
           </Card>
 
-          {/* Grade Scale Reference */}
+          {/* Numeric Grade Reference */}
           <Card className="border-border/50">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">مقياس التقديرات</CardTitle>
+              <CardTitle className="text-lg">مقياس العلامات من 100</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { grade: "A / A+", range: "90-100", points: "4.0" },
-                  { grade: "A-", range: "85-89", points: "3.7" },
-                  { grade: "B+", range: "80-84", points: "3.3" },
-                  { grade: "B", range: "75-79", points: "3.0" },
-                  { grade: "B-", range: "70-74", points: "2.7" },
-                  { grade: "C+", range: "65-69", points: "2.3" },
-                  { grade: "C", range: "60-64", points: "2.0" },
-                  { grade: "C-", range: "55-59", points: "1.7" },
-                  { grade: "D+", range: "50-54", points: "1.3" },
-                  { grade: "D", range: "45-49", points: "1.0" },
-                  { grade: "F", range: "0-44", points: "0.0" },
+                  { label: "ممتاز", range: "90 - 100" },
+                  { label: "جيد جداً", range: "80 - 89" },
+                  { label: "جيد", range: "70 - 79" },
+                  { label: "مقبول", range: "60 - 69" },
+                  { label: "راسب", range: "أقل من 60" },
                 ].map((item, index) => (
                   <div key={index} className="p-3 bg-muted/50 rounded-lg text-center">
-                    <Badge className={getGradeColor(item.grade.split(" ")[0])} >
-                      {item.grade}
-                    </Badge>
+                    <p className="text-sm font-semibold text-foreground">{item.label}</p>
                     <p className="text-xs text-muted-foreground mt-2">{item.range}</p>
-                    <p className="text-xs font-medium text-foreground">{item.points} نقطة</p>
                   </div>
                 ))}
               </div>

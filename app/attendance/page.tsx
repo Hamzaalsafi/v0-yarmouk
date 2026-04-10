@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Home,
   ClipboardList,
   Calendar,
@@ -33,61 +33,75 @@ import {
 } from "@/components/ui/alert"
 
 // Attendance Data
-const attendanceData = [
+type AttendanceStatus = "excellent" | "good" | "warning" | "danger"
+
+type AttendanceRecord = {
+  code: string
+  name: string
+  instructor: string
+  totalClasses: number
+  attended: number
+  absences: number
+  maxAbsences: number
+  status: AttendanceStatus
+  schedule: string
+}
+
+const attendanceData: AttendanceRecord[] = [
   {
-    code: "IE 401",
-    name: "بحوث العمليات",
-    instructor: "د. أحمد الخطيب",
+    code: "IE 358",
+    name: "بحوث عمليات (1)",
+    instructor: "سنان عبيدات",
     totalClasses: 24,
     attended: 20,
     absences: 4,
     maxAbsences: 5,
     status: "warning" as const,
-    schedule: "أحد، ثلاثاء 09:00 - 10:30"
+    schedule: "أحد، ثلاثاء، خميس 10:30 - 11:30"
   },
   {
-    code: "IE 403",
-    name: "إدارة الجودة",
-    instructor: "د. محمد النجار",
+    code: "IE 432",
+    name: "اقتصاد هندسي",
+    instructor: "محمد يونس علي الدراغمة",
     totalClasses: 24,
     attended: 22,
     absences: 2,
     maxAbsences: 5,
     status: "good" as const,
-    schedule: "أحد، ثلاثاء 11:00 - 12:30"
+    schedule: "اثنين، أربعاء 12:30 - 14:00"
   },
   {
-    code: "IE 405",
+    code: "IE 422",
     name: "هندسة العوامل البشرية",
-    instructor: "د. ليلى حسن",
+    instructor: "الاء طويق",
     totalClasses: 24,
     attended: 23,
     absences: 1,
     maxAbsences: 5,
     status: "excellent" as const,
-    schedule: "اثنين، أربعاء 09:00 - 10:30"
+    schedule: "خميس 12:30 - 13:30"
   },
   {
-    code: "MATH 301",
-    name: "الإحصاء الهندسي",
-    instructor: "د. عمر الزعبي",
+    code: "IE 205",
+    name: "المشاغل الهندسية",
+    instructor: "احمد عبدالحفيظ المومني",
     totalClasses: 24,
     attended: 21,
     absences: 3,
     maxAbsences: 5,
     status: "good" as const,
-    schedule: "اثنين، أربعاء 14:00 - 15:30"
+    schedule: "اثنين، أربعاء 14:30 - 17:30"
   },
   {
-    code: "IE 402",
-    name: "مشروع التخرج 1",
-    instructor: "د. خالد المصري",
+    code: "IE 423",
+    name: "مختبر هندسة العوامل البشرية",
+    instructor: "عبدالله الخضر",
     totalClasses: 12,
     attended: 12,
     absences: 0,
     maxAbsences: 3,
     status: "excellent" as const,
-    schedule: "خميس 10:00 - 13:00"
+    schedule: "ثلاثاء 14:30 - 17:30"
   },
 ]
 
@@ -168,8 +182,8 @@ export default function AttendancePage() {
               key={item.title}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.active 
-                  ? 'bg-primary text-primary-foreground' 
+                item.active
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
@@ -208,8 +222,8 @@ export default function AttendancePage() {
                   key={item.title}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    item.active 
-                      ? 'bg-primary text-primary-foreground' 
+                    item.active
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   onClick={() => setSidebarOpen(false)}
@@ -329,11 +343,11 @@ export default function AttendancePage() {
           {/* Attendance Cards */}
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-foreground">تفاصيل الغياب لكل مادة</h2>
-            
+
             <div className="grid gap-4">
               {attendanceData.map((course, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className={`border-border/50 ${
                     course.status === "warning" ? "border-accent/30 bg-accent/5" :
                     course.status === "danger" ? "border-destructive/30 bg-destructive/5" : ""
@@ -377,7 +391,7 @@ export default function AttendancePage() {
                           </span>
                         </div>
                         <div className="h-3 bg-muted rounded-full overflow-hidden">
-                          <div 
+                          <div
                             className={`h-full transition-all ${getProgressColor(course.absences, course.maxAbsences)}`}
                             style={{ width: `${(course.absences / course.maxAbsences) * 100}%` }}
                           />

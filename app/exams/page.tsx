@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Home,
   ClipboardList,
   Calendar,
@@ -37,50 +37,50 @@ import {
 // Midterm Exams Data
 const midtermExams = [
   {
-    code: "IE 401",
-    name: "بحوث العمليات",
+    code: "IE 358",
+    name: "بحوث عمليات (1)",
     date: "25 مارس 2026",
     day: "الأربعاء",
     time: "09:00 - 11:00",
     room: "قاعة H201",
     building: "مبنى الهندسة",
-    instructor: "د. أحمد الخطيب",
+    instructor: "سنان عبيدات",
     daysLeft: 9,
     status: "upcoming"
   },
   {
-    code: "IE 403",
-    name: "إدارة الجودة",
+    code: "IE 432",
+    name: "اقتصاد هندسي",
     date: "28 مارس 2026",
     day: "السبت",
     time: "11:00 - 13:00",
     room: "قاعة H105",
     building: "مبنى الهندسة",
-    instructor: "د. محمد النجار",
+    instructor: "محمد يونس علي الدراغمة",
     daysLeft: 12,
     status: "upcoming"
   },
   {
-    code: "IE 405",
+    code: "IE 422",
     name: "هندسة العوامل البشرية",
     date: "1 أبريل 2026",
     day: "الأربعاء",
     time: "09:00 - 11:00",
     room: "قاعة H301",
     building: "مبنى الهندسة",
-    instructor: "د. ليلى حسن",
+    instructor: "الاء طويق",
     daysLeft: 16,
     status: "upcoming"
   },
   {
-    code: "MATH 301",
-    name: "الإحصاء الهندسي",
+    code: "IE 318",
+    name: "قياس وتحليل العمل",
     date: "4 أبريل 2026",
     day: "السبت",
     time: "14:00 - 16:00",
     room: "قاعة S101",
     building: "مبنى العلوم",
-    instructor: "د. عمر الزعبي",
+    instructor: "احمد عبدالحفيظ المومني",
     daysLeft: 19,
     status: "upcoming"
   },
@@ -89,50 +89,50 @@ const midtermExams = [
 // Final Exams Data
 const finalExams = [
   {
-    code: "IE 401",
-    name: "بحوث العمليات",
+    code: "IE 358",
+    name: "بحوث عمليات (1)",
     date: "20 مايو 2026",
     day: "الأربعاء",
     time: "09:00 - 12:00",
     room: "قاعة الامتحانات الكبرى",
     building: "مبنى المكتبة",
-    instructor: "د. أحمد الخطيب",
+    instructor: "سنان عبيدات",
     daysLeft: 65,
     status: "scheduled"
   },
   {
-    code: "IE 403",
-    name: "إدارة الجودة",
+    code: "IE 432",
+    name: "اقتصاد هندسي",
     date: "24 مايو 2026",
     day: "الأحد",
     time: "09:00 - 12:00",
     room: "قاعة الامتحانات الكبرى",
     building: "مبنى المكتبة",
-    instructor: "د. محمد النجار",
+    instructor: "محمد يونس علي الدراغمة",
     daysLeft: 69,
     status: "scheduled"
   },
   {
-    code: "IE 405",
+    code: "IE 422",
     name: "هندسة العوامل البشرية",
     date: "28 مايو 2026",
     day: "الخميس",
     time: "14:00 - 17:00",
     room: "قاعة H301",
     building: "مبنى الهندسة",
-    instructor: "د. ليلى حسن",
+    instructor: "الاء طويق",
     daysLeft: 73,
     status: "scheduled"
   },
   {
-    code: "MATH 301",
-    name: "الإحصاء الهندسي",
+    code: "IE 318",
+    name: "قياس وتحليل العمل",
     date: "1 يونيو 2026",
     day: "الاثنين",
     time: "09:00 - 12:00",
     room: "قاعة S201",
     building: "مبنى العلوم",
-    instructor: "د. عمر الزعبي",
+    instructor: "احمد عبدالحفيظ المومني",
     daysLeft: 77,
     status: "scheduled"
   },
@@ -189,8 +189,8 @@ export default function ExamsPage() {
               key={item.title}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.active 
-                  ? 'bg-primary text-primary-foreground' 
+                item.active
+                  ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
@@ -229,8 +229,8 @@ export default function ExamsPage() {
                   key={item.title}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    item.active 
-                      ? 'bg-primary text-primary-foreground' 
+                    item.active
+                      ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   onClick={() => setSidebarOpen(false)}
@@ -369,8 +369,8 @@ export default function ExamsPage() {
             <TabsContent value="midterm" className="mt-6">
               <div className="space-y-4">
                 {midtermExams.map((exam, index) => (
-                  <Card 
-                    key={index} 
+                  <Card
+                    key={index}
                     className={`border-border/50 ${
                       exam.daysLeft <= 10 ? 'border-destructive/30 bg-destructive/5' : ''
                     }`}
@@ -387,7 +387,7 @@ export default function ExamsPage() {
                             )}
                           </div>
                           <p className="text-sm text-muted-foreground mb-3">{exam.instructor}</p>
-                          
+
                           <div className="grid grid-cols-2 gap-4">
                             <div className="flex items-center gap-2">
                               <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -444,7 +444,7 @@ export default function ExamsPage() {
                             <Badge variant="outline" className="text-xs">{exam.code}</Badge>
                           </div>
                           <p className="text-sm text-muted-foreground mb-3">{exam.instructor}</p>
-                          
+
                           <div className="grid grid-cols-2 gap-4">
                             <div className="flex items-center gap-2">
                               <Calendar className="h-4 w-4 text-muted-foreground" />

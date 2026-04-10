@@ -85,7 +85,7 @@ const studentData = {
   major: "الهندسة الصناعية",
   level: "السنة الرابعة",
   currentSemester: "الفصل الثاني 2025/2026",
-  gpa: 3.45,
+  gpa: 86.25,
   totalCredits: 98,
   remainingCredits: 42,
   registeredCredits: 15,
@@ -103,11 +103,11 @@ const summaryCards = [
   },
   {
     title: "المعدل التراكمي",
-    value: "3.45",
-    subtitle: "من 4.00",
+    value: "86.25",
+    subtitle: "من 100",
     icon: TrendingUp,
     color: "bg-accent",
-    trend: "+0.12"
+    trend: "+1.50"
   },
   {
     title: "الامتحانات القادمة",
@@ -129,9 +129,9 @@ const summaryCards = [
 
 // ============ Upcoming Exams ============
 const upcomingExams = [
-  { course: "بحوث العمليات", code: "IE 401", date: "25 مارس 2026", time: "09:00 ص", room: "قاعة H201", daysLeft: 9 },
-  { course: "إدارة الجودة", code: "IE 403", date: "28 مارس 2026", time: "11:00 ص", room: "قاعة H105", daysLeft: 12 },
-  { course: "هندسة العوامل البشرية", code: "IE 405", date: "1 أبريل 2026", time: "09:00 ص", room: "قاعة H301", daysLeft: 16 },
+  { course: "بحوث عمليات (1)", code: "IE 358", date: "25 مارس 2026", time: "09:00 ص", room: "قاعة H201", daysLeft: 9 },
+  { course: "اقتصاد هندسي", code: "IE 432", date: "28 مارس 2026", time: "11:00 ص", room: "قاعة H105", daysLeft: 12 },
+  { course: "هندسة العوامل البشرية", code: "IE 422", date: "1 أبريل 2026", time: "09:00 ص", room: "قاعة H301", daysLeft: 16 },
 ]
 
 // ============ Grades Data ============
@@ -144,27 +144,27 @@ const semesters = [
 
 const gradesData: Record<string, any[]> = {
   "2025-2": [
-    { code: "IE 401", name: "بحوث العمليات", credits: 3, midterm: 42, coursework: 18, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 403", name: "إدارة الجودة", credits: 3, midterm: 38, coursework: 17, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 405", name: "هندسة العوامل البشرية", credits: 3, midterm: 45, coursework: 19, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "MATH 301", name: "الإحصاء الهندسي", credits: 3, midterm: 35, coursework: 16, final: null, total: null, grade: null, status: "in-progress" },
-    { code: "IE 402", name: "مشروع التخرج 1", credits: 3, midterm: null, coursework: 85, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 318", name: "قياس وتحليل العمل", credits: 3, midterm: 42, coursework: 18, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 358", name: "بحوث عمليات (1)", credits: 3, midterm: 38, coursework: 17, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 432", name: "اقتصاد هندسي", credits: 3, midterm: 45, coursework: 19, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 205", name: "المشاغل الهندسية", credits: 2, midterm: 35, coursework: 16, final: null, total: null, grade: null, status: "in-progress" },
+    { code: "IE 423", name: "مختبر هندسة العوامل البشرية", credits: 1, midterm: null, coursework: 85, final: null, total: null, grade: null, status: "in-progress" },
   ],
   "2025-1": [
-    { code: "IE 301", name: "تصميم النظم الصناعية", credits: 3, midterm: 44, coursework: 18, final: 38, total: 92, grade: "A", status: "complete" },
-    { code: "IE 303", name: "هندسة الصيانة", credits: 3, midterm: 40, coursework: 17, final: 35, total: 85, grade: "B+", status: "complete" },
-    { code: "IE 305", name: "إدارة العمليات", credits: 3, midterm: 38, coursework: 16, final: 32, total: 78, grade: "B", status: "complete" },
-    { code: "MATH 203", name: "المعادلات التفاضلية", credits: 3, midterm: 42, coursework: 19, final: 36, total: 88, grade: "A-", status: "complete" },
+    { code: "IE 318", name: "قياس وتحليل العمل", credits: 3, midterm: 44, coursework: 18, final: 38, total: 92, grade: 92, status: "complete" },
+    { code: "IE 354", name: "الإحصاء الهندسي التطبيقي", credits: 3, midterm: 40, coursework: 17, final: 35, total: 85, grade: 85, status: "complete" },
+    { code: "IE 358", name: "بحوث عمليات (1)", credits: 3, midterm: 38, coursework: 16, final: 32, total: 78, grade: 78, status: "complete" },
+    { code: "IE 432", name: "اقتصاد هندسي", credits: 3, midterm: 42, coursework: 19, final: 36, total: 88, grade: 88, status: "complete" },
   ],
 }
 
 // ============ Attendance Data ============
 const attendanceData = [
-  { code: "IE 401", name: "بحوث العمليات", instructor: "د. أحمد الخطيب", totalClasses: 24, attended: 20, absences: 4, maxAbsences: 5, status: "warning" as const, schedule: "أحد، ثلاثاء 09:00 - 10:30" },
-  { code: "IE 403", name: "إدارة الجودة", instructor: "د. محمد النجار", totalClasses: 24, attended: 22, absences: 2, maxAbsences: 5, status: "good" as const, schedule: "أحد، ثلاثاء 11:00 - 12:30" },
-  { code: "IE 405", name: "هندسة العوامل البشرية", instructor: "د. ليلى حسن", totalClasses: 24, attended: 23, absences: 1, maxAbsences: 5, status: "excellent" as const, schedule: "اثنين، أربعاء 09:00 - 10:30" },
-  { code: "MATH 301", name: "الإحصاء الهندسي", instructor: "د. عمر الزعبي", totalClasses: 24, attended: 21, absences: 3, maxAbsences: 5, status: "good" as const, schedule: "اثنين، أربعاء 14:00 - 15:30" },
-  { code: "IE 402", name: "مشروع التخرج 1", instructor: "د. خالد المصري", totalClasses: 12, attended: 12, absences: 0, maxAbsences: 3, status: "excellent" as const, schedule: "خميس 10:00 - 13:00" },
+  { code: "IE 358", name: "بحوث عمليات (1)", instructor: "سنان عبيدات", totalClasses: 24, attended: 20, absences: 4, maxAbsences: 5, status: "warning" as const, schedule: "أحد، ثلاثاء، خميس 10:30 - 11:30" },
+  { code: "IE 432", name: "اقتصاد هندسي", instructor: "محمد يونس علي الدراغمة", totalClasses: 24, attended: 22, absences: 2, maxAbsences: 5, status: "good" as const, schedule: "اثنين، أربعاء 12:30 - 14:00" },
+  { code: "IE 422", name: "هندسة العوامل البشرية", instructor: "الاء طويق", totalClasses: 24, attended: 23, absences: 1, maxAbsences: 5, status: "excellent" as const, schedule: "خميس 12:30 - 13:30" },
+  { code: "IE 205", name: "المشاغل الهندسية", instructor: "احمد عبدالحفيظ المومني", totalClasses: 24, attended: 21, absences: 3, maxAbsences: 5, status: "good" as const, schedule: "اثنين، أربعاء 14:30 - 17:30" },
+  { code: "IE 423", name: "مختبر هندسة العوامل البشرية", instructor: "عبدالله الخضر", totalClasses: 12, attended: 12, absences: 0, maxAbsences: 3, status: "excellent" as const, schedule: "ثلاثاء 14:30 - 17:30" },
 ]
 
 // ============ Schedule Data ============
@@ -175,6 +175,7 @@ const scheduleData = [
     courses: [
       { code: "IE 318", name: "قياس وتحليل العمل", time: "11:30 - 12:30", room: "هج 215", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary" },
       { code: "IE 358", name: "بحوث عمليات (1)", time: "10:30 - 11:30", room: "هج 322", instructor: "سنان عبيدات", color: "bg-accent" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "10:30 - 11:30", room: "هج 321", instructor: "اسيل فايز خنفر", color: "bg-primary/85" },
     ]
   },
   {
@@ -182,6 +183,7 @@ const scheduleData = [
     dayEn: "Monday",
     courses: [
       { code: "IE 205", name: "المشاغل الهندسية", time: "14:30 - 17:30", room: "مشاغل", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary/85" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "12:30 - 14:00", room: "هج 321", instructor: "محمد يونس علي الدراغمة", color: "bg-accent/85" },
     ]
   },
   {
@@ -197,6 +199,7 @@ const scheduleData = [
     dayEn: "Wednesday",
     courses: [
       { code: "IE 205", name: "المشاغل الهندسية", time: "14:30 - 17:30", room: "مشاغل", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary/85" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "12:30 - 14:00", room: "هج 321", instructor: "محمد يونس علي الدراغمة", color: "bg-accent/85" },
     ]
   },
   {
@@ -239,15 +242,6 @@ const sidebarNav = [
 ]
 
 // ============ Helper Functions ============
-function getGradeColor(grade: string | null) {
-  if (!grade) return "bg-muted text-muted-foreground"
-  if (grade.startsWith("A")) return "bg-accent text-accent-foreground"
-  if (grade.startsWith("B")) return "bg-primary text-primary-foreground"
-  if (grade.startsWith("C")) return "bg-primary/80 text-primary-foreground"
-  if (grade.startsWith("D")) return "bg-secondary text-secondary-foreground"
-  return "bg-destructive text-destructive-foreground"
-}
-
 function getStatusBadge(status: "excellent" | "good" | "warning" | "danger") {
   switch (status) {
     case "excellent": return <Badge className="bg-accent/10 text-accent border-0">ممتاز</Badge>
@@ -282,25 +276,20 @@ export default function DashboardPage() {
   const grades = gradesData[selectedSemester] || gradesData["2025-2"]
   const isCurrentSemester = selectedSemester === "2025-2"
 
-  const calculateSemesterGPA = () => {
+  const calculateSemesterAverage = () => {
     if (isCurrentSemester) return null
-    const gradePoints: Record<string, number> = {
-      "A+": 4.0, "A": 4.0, "A-": 3.7,
-      "B+": 3.3, "B": 3.0, "B-": 2.7,
-      "C+": 2.3, "C": 2.0, "C-": 1.7,
-      "D+": 1.3, "D": 1.0, "F": 0
-    }
-    let totalPoints = 0, totalCredits = 0
+    let weightedSum = 0
+    let totalCredits = 0
     grades.forEach(g => {
-      if (g.grade && gradePoints[g.grade] !== undefined) {
-        totalPoints += gradePoints[g.grade] * g.credits
+      if (g.total !== null) {
+        weightedSum += g.total * g.credits
         totalCredits += g.credits
       }
     })
-    return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : null
+    return totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : null
   }
 
-  const semesterGPA = calculateSemesterGPA()
+  const semesterAverage = calculateSemesterAverage()
   const totalAbsences = attendanceData.reduce((sum, c) => sum + c.absences, 0)
   const coursesAtRisk = attendanceData.filter(c => c.status === "warning").length
 
@@ -506,7 +495,7 @@ export default function DashboardPage() {
         {/* Page Content - Tabs */}
         <main className="flex-1 p-4 lg:p-6 overflow-auto">
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
+            <TabsList className="flex justify-between w-full overflow-auto">
               <TabsTrigger value="overview">نظرة عامة</TabsTrigger>
               <TabsTrigger value="grades">العلامات</TabsTrigger>
               <TabsTrigger value="attendance">الغياب</TabsTrigger>
@@ -635,7 +624,7 @@ export default function DashboardPage() {
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground">تنبيه غياب</h4>
                       <p className="text-sm text-muted-foreground mt-1">
-                        لديك 4 غيابات في مادة <span className="font-medium text-foreground">بحوث العمليات (IE 401)</span> من أصل 5 مسموحة.
+                        لديك 4 غيابات في مادة <span className="font-medium text-foreground">بحوث عمليات (1) (IE 358)</span> من أصل 5 مسموحة.
                       </p>
                     </div>
                   </div>
@@ -713,7 +702,7 @@ export default function DashboardPage() {
                     <span className="text-3xl font-bold">{studentData.gpa}</span>
                   </div>
                   <h3 className="font-semibold mb-1">المعدل التراكمي</h3>
-                  <p className="text-sm opacity-90">من 4.00</p>
+                  <p className="text-sm opacity-90">من 100</p>
                   <div className="flex items-center justify-center gap-1 mt-3">
                     <CheckCircle2 className="h-4 w-4" />
                     <span className="text-sm">تقدير جيد جداً</span>
@@ -746,11 +735,11 @@ export default function DashboardPage() {
                       <TableRow>
                         <TableHead>كود المادة</TableHead>
                         <TableHead>اسم المادة</TableHead>
-                        <TableHead className="text-center">نقاط</TableHead>
+                        <TableHead className="text-center">ساعات</TableHead>
                         <TableHead className="text-center">نصفي</TableHead>
                         <TableHead className="text-center">أعمال</TableHead>
                         <TableHead className="text-center">نهائي</TableHead>
-                        <TableHead className="text-center">التقدير</TableHead>
+                        <TableHead className="text-center">العلامة من 100</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -763,20 +752,18 @@ export default function DashboardPage() {
                           <TableCell className="text-center">{grade.coursework || '-'}</TableCell>
                           <TableCell className="text-center">{grade.final || '-'}</TableCell>
                           <TableCell className="text-center">
-                            {grade.grade ? (
-                              <Badge className={getGradeColor(grade.grade)}>{grade.grade}</Badge>
-                            ) : (
-                              <span className="text-xs text-muted-foreground">قيد الإجراء</span>
-                            )}
+                            {grade.total !== null
+                              ? <span className="font-semibold">{grade.total}</span>
+                              : <span className="text-xs text-muted-foreground">قيد الإجراء</span>}
                           </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
-                  {semesterGPA && (
+                  {semesterAverage && (
                     <div className="mt-4 p-3 bg-muted rounded-lg text-center">
-                      <p className="text-sm text-muted-foreground">معدل الفصل</p>
-                      <p className="text-2xl font-bold text-foreground">{semesterGPA}</p>
+                      <p className="text-sm text-muted-foreground">متوسط الفصل</p>
+                      <p className="text-2xl font-bold text-foreground">{semesterAverage} / 100</p>
                     </div>
                   )}
                 </CardContent>
