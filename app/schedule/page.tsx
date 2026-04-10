@@ -35,39 +35,41 @@ const scheduleData = [
     day: "الأحد",
     dayEn: "Sunday",
     courses: [
-      { code: "IE 401", name: "بحوث العمليات", time: "09:00 - 10:30", room: "H201", instructor: "د. أحمد الخطيب", color: "bg-primary" },
-      { code: "IE 403", name: "إدارة الجودة", time: "11:00 - 12:30", room: "H301", instructor: "د. محمد النجار", color: "bg-accent" },
+      { code: "IE 318", name: "قياس وتحليل العمل", time: "11:30 - 12:30", room: "هج 215", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary" },
+      { code: "IE 358", name: "بحوث عمليات (1)", time: "10:30 - 11:30", room: "هج 322", instructor: "سنان عبيدات", color: "bg-accent" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "10:30 - 11:30", room: "هج 321", instructor: "اسيل فايز خنفر", color: "bg-primary/85" },
     ]
   },
   {
     day: "الاثنين",
     dayEn: "Monday",
     courses: [
-      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-primary/85" },
-      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-accent/85" },
+      { code: "IE 205", name: "المشاغل الهندسية", time: "14:30 - 17:30", room: "مشاغل", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary/85" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "12:30 - 14:00", room: "هج 321", instructor: "محمد يونس علي الدراغمة", color: "bg-accent/85" },
     ]
   },
   {
     day: "الثلاثاء",
     dayEn: "Tuesday",
     courses: [
-      { code: "IE 401", name: "بحوث العمليات", time: "09:00 - 10:30", room: "H201", instructor: "د. أحمد الخطيب", color: "bg-primary" },
-      { code: "IE 403", name: "إدارة الجودة", time: "11:00 - 12:30", room: "H301", instructor: "د. محمد النجار", color: "bg-accent" },
+      { code: "IE 318", name: "قياس وتحليل العمل", time: "11:30 - 12:30", room: "هج 215", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary" },
+      { code: "IE 423", name: "مختبر هندسة العوامل البشرية", time: "14:30 - 17:30", room: "مختبر", instructor: "عبدالله الخضر", color: "bg-accent" },
     ]
   },
   {
     day: "الأربعاء",
     dayEn: "Wednesday",
     courses: [
-      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-primary/85" },
-      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-accent/85" },
+      { code: "IE 205", name: "المشاغل الهندسية", time: "14:30 - 17:30", room: "مشاغل", instructor: "احمد عبدالحفيظ المومني", color: "bg-primary/85" },
+      { code: "IE 432", name: "اقتصاد هندسي", time: "12:30 - 14:00", room: "هج 321", instructor: "محمد يونس علي الدراغمة", color: "bg-accent/85" },
     ]
   },
   {
     day: "الخميس",
     dayEn: "Thursday",
     courses: [
-      { code: "IE 402", name: "مشروع التخرج 1", time: "10:00 - 13:00", room: "مختبر H401", instructor: "د. خالد المصري", color: "bg-destructive" },
+      { code: "IE 213", name: "مختبرالقياسات", time: "14:30 - 17:30", room: "مختبر", instructor: "سنان عبيدات", color: "bg-destructive" },
+      { code: "IE 422", name: "هندسة العوامل البشرية", time: "12:30 - 13:30", room: "هج 322", instructor: "الاء طويق", color: "bg-primary/85" },
     ]
   },
 ]
@@ -82,6 +84,8 @@ const days = ["الأحد", "الاثنين", "الثلاثاء", "الأربع�
 // Sidebar Navigation
 const sidebarNav = [
   { icon: Home, title: "الرئيسية", href: "/dashboard", active: false },
+  { icon: ClipboardList, title: "المعلومات الأساسية", href: "/basic-info", active: false },
+  { icon: Calendar, title: "أوقات التسجيل", href: "/basic-info?tab=registration-times", active: false },
   { icon: ClipboardList, title: "تسجيل المواد", href: "/registration", active: false },
   { icon: Calendar, title: "الجدول الدراسي", href: "/schedule", active: true },
   { icon: GraduationCap, title: "العلامات", href: "/grades", active: false },
@@ -366,11 +370,11 @@ export default function SchedulePage() {
             <CardContent>
               <div className="flex flex-wrap gap-4">
                 {[
-                  { name: "بحوث العمليات", code: "IE 401", color: "bg-primary" },
-                  { name: "إدارة الجودة", code: "IE 403", color: "bg-accent" },
-                  { name: "هندسة العوامل البشرية", code: "IE 405", color: "bg-primary/85" },
-                  { name: "الإحصاء الهندسي", code: "MATH 301", color: "bg-accent/85" },
-                  { name: "مشروع التخرج 1", code: "IE 402", color: "bg-destructive" },
+                  { name: "قياس وتحليل العمل", code: "IE 318", color: "bg-primary" },
+                  { name: "بحوث عمليات (1)", code: "IE 358", color: "bg-accent" },
+                  { name: "اقتصاد هندسي", code: "IE 432", color: "bg-primary/85" },
+                  { name: "المشاغل الهندسية", code: "IE 205", color: "bg-accent/85" },
+                  { name: "مختبرالقياسات", code: "IE 213", color: "bg-destructive" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <div className={`w-4 h-4 rounded ${item.color}`} />

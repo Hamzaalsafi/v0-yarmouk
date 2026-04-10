@@ -3,15 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { 
-  Search, 
-  GraduationCap, 
-  BookOpen, 
-  Calendar, 
-  FileText, 
-  ClipboardList, 
-  Users, 
-  Bell, 
+import {
+  Search,
+  BookOpen,
+  Calendar,
+  FileText,
+  ClipboardList,
+  Users,
+  Bell,
   HelpCircle,
   ChevronLeft,
   Globe,
@@ -41,71 +40,72 @@ import { Badge } from "@/components/ui/badge"
 
 // Quick Access Services Data
 const quickServices = [
-  { 
-    icon: ClipboardList, 
-    title: "نظام معلومات الطالب", 
+  {
+    icon: ClipboardList,
+    title: "نظام معلومات الطالب",
     subtitle: "SIS",
     href: "/dashboard",
     color: "bg-primary"
   },
-  { 
-    icon: BookOpen, 
-    title: "التعليم الإلكتروني", 
+  {
+    icon: BookOpen,
+    title: "نظام التعلم الإلكتروني",
     subtitle: "E-Learning",
-    href: "/elearning",
+    href: "https://elearning.yu.edu.jo",
     color: "bg-accent"
   },
-  { 
-    icon: Calendar, 
-    title: "تسجيل المواد", 
-    subtitle: "Course Registration",
-    href: "/registration",
+  {
+    icon: Calendar,
+    title: "خدمات العاملين",
+    subtitle: "ESS",
+    href: "/employee-services",
     color: "bg-primary/90"
   },
-  { 
-    icon: FileText, 
-    title: "جدول الامتحانات", 
-    subtitle: "Exam Schedule",
-    href: "/exams",
+  {
+    icon: FileText,
+    title: "البريد الإلكتروني",
+    subtitle: "Outlook",
+    href: "/university-email",
     color: "bg-accent"
   },
-  { 
-    icon: GraduationCap, 
-    title: "العلامات", 
-    subtitle: "Grades",
-    href: "/grades",
+  {
+    icon: Target,
+    title: "التقويم الجامعي",
+    subtitle: "University Calendar",
+    href: "/university-calendar",
     color: "bg-primary"
   },
-  { 
-    icon: Target, 
-    title: "الخطة الدراسية", 
-    subtitle: "Study Plan",
-    href: "/study-plan",
-    color: "bg-primary"
-  },
-  { 
-    icon: Bell, 
-    title: "الإعلانات", 
-    subtitle: "Announcements",
-    href: "/announcements",
+  {
+    icon: Bell,
+    title: "الطلبة",
+    subtitle: "Students",
+    href: "/students-services",
     color: "bg-accent/90"
   },
-  { 
-    icon: Users, 
-    title: "دليل أعضاء هيئة التدريس", 
-    subtitle: "Faculty Directory",
-    href: "/faculty",
+  {
+    icon: Users,
+    title: "العاملون",
+    subtitle: "Employees",
+    href: "/employees-services",
+    color: "bg-accent"
+  },
+  {
+    icon: HelpCircle,
+    title: "الأسئلة الأكثر شيوعاً",
+    subtitle: "FAQ",
+    href: "/faq-service",
     color: "bg-accent"
   },
 ]
 
 // Navigation Categories
 const navCategories = [
-  { title: "الخدمات الأكاديمية", href: "/services" },
-  { title: "الحياة الجامعية", href: "/campus-life" },
-  { title: "الكليات والأقسام", href: "/colleges" },
-  { title: "الأخبار والإعلانات", href: "/announcements" },
-  { title: "مركز المساعدة", href: "/help" },
+  { title: "عن الجامعة", href: "https://www.yu.edu.jo/index.php" },
+  { title: "الكليات", href: "https://www.yu.edu.jo/index.php/2023-03-19-09-08-18" },
+  { title: "القبول والتسجيل", href: "https://admreg.yu.edu.jo/" },
+  { title: "البحث العلمي", href: "https://scholar.yu.edu.jo/" },
+  { title: "المنصات الإلكترونية", href: "/dashboard" },
+  { title: "المكتبة", href: "https://library.yu.edu.jo" },
 ]
 
 // Important Announcements
@@ -140,7 +140,6 @@ const deadlines = [
 // Most Used Services
 const popularServices = [
   { icon: ClipboardList, title: "تسجيل المواد", count: "12,450 زيارة", href: "/registration" },
-  { icon: GraduationCap, title: "الاطلاع على العلامات", count: "10,200 زيارة", href: "/grades" },
   { icon: Calendar, title: "الجدول الدراسي", count: "8,900 زيارة", href: "/schedule" },
   { icon: FileText, title: "جدول الامتحانات", count: "7,500 زيارة", href: "/exams" },
 ]
@@ -156,7 +155,7 @@ export default function HomePage() {
         <div className="container mx-auto flex items-center justify-center gap-2">
           <AlertCircle className="h-4 w-4" />
           <span>فترة التسجيل المبكر متاحة الآن - سجل قبل 20 مارس للحصول على الأولوية</span>
-          <Link href="/registration" className="underline font-medium hover:no-underline">
+          <Link href="/dashboard" className="underline font-medium hover:no-underline">
             سجّل الآن
           </Link>
         </div>
@@ -260,7 +259,7 @@ export default function HomePage() {
             <p className="text-lg lg:text-xl opacity-90 mb-8 text-pretty">
               الوصول السريع والسهل لجميع الخدمات الأكاديمية والطلابية في مكان واحد
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative max-w-xl mx-auto">
               <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -272,9 +271,9 @@ export default function HomePage() {
                 className="w-full pr-12 pl-4 py-6 text-lg bg-background/95 text-foreground rounded-xl border-0 shadow-lg"
               />
               {searchQuery && (
-                <Link href={`/search?q=${encodeURIComponent(searchQuery)}`}>
-                  <Button 
-                    size="sm" 
+                <Link href={`https://www.yu.edu.jo/index.php/component/search/?searchword=${encodeURIComponent(searchQuery)}&searchphrase=all&Itemid=541`}>
+                  <Button
+                    size="sm"
                     className="absolute left-2 top-1/2 -translate-y-1/2"
                   >
                     بحث
@@ -285,10 +284,10 @@ export default function HomePage() {
 
             {/* Quick Search Tags */}
             <div className="flex flex-wrap justify-center gap-2 mt-4">
-              {["تسجيل المواد", "العلامات", "الجدول", "الرسوم"].map((tag) => (
-                <Link 
-                  key={tag} 
-                  href={`/search?q=${encodeURIComponent(tag)}`}
+              {["تسجيل المواد", "الجدول", "الرسوم"].map((tag) => (
+                <Link
+                  key={tag}
+                  href={`https://www.yu.edu.jo/index.php/component/search/?searchword=${encodeURIComponent(tag)}&searchphrase=all&Itemid=541`}
                   className="text-sm bg-primary-foreground/10 hover:bg-primary-foreground/20 px-3 py-1 rounded-full transition-colors"
                 >
                   {tag}
@@ -304,7 +303,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {quickServices.map((service) => (
-              <Link key={service.title} href={service.href}>
+              <Link
+                key={service.title}
+                href={service.href}
+                target={service.href.startsWith("http") ? "_blank" : undefined}
+                rel={service.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
                 <Card className="h-full hover:shadow-lg transition-all duration-200 hover:-translate-y-1 border-border/50 cursor-pointer group">
                   <CardContent className="p-4 lg:p-6 text-center">
                     <div className={`w-12 h-12 lg:w-14 lg:h-14 ${service.color} rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
@@ -332,7 +336,7 @@ export default function HomePage() {
                 <h2 className="text-xl lg:text-2xl font-bold text-foreground">
                   الإعلانات المهمة
                 </h2>
-                <Link href="/announcements" className="text-sm text-primary hover:underline flex items-center gap-1">
+                <Link href="https://www.yu.edu.jo/index.php/ann-ar" className="text-sm text-primary hover:underline flex items-center gap-1">
                   عرض الكل
                   <ArrowLeft className="h-4 w-4" />
                 </Link>
@@ -460,7 +464,7 @@ export default function HomePage() {
                   <p className="text-sm opacity-90 mb-4">
                     فريق الدعم متاح للإجابة على استفساراتك
                   </p>
-                  <Link href="/help">
+                  <Link href="https://www.yu.edu.jo/index.php/faq-ar">
                     <Button variant="secondary" size="sm" className="w-full">
                       مركز المساعدة
                     </Button>
@@ -485,14 +489,14 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              { icon: Mail, title: "بريد الأساتذة", href: "/faculty" },
-              { icon: Briefcase, title: "فرص التدريب", href: "/training" },
-              { icon: Scale, title: "الأنظمة والقوانين", href: "/regulations" },
-              { icon: Shield, title: "حقوق الطالب", href: "/rights" },
-              { icon: Bus, title: "المواصلات", href: "/transportation" },
-              { icon: Library, title: "المكتبة", href: "/library" },
-            ].map((service, index) => (
+              {[
+                { icon: Mail, title: "بريد الأساتذة", href: "https://outlook.com/yu.edu.jo" },
+                { icon: Briefcase, title: "وظائف", href: "https://hr.yu.edu.jo/job/userpage/AdvertisementPage.aspx" },
+                { icon: Scale, title: "الأنظمة والقوانين", href: "https://law.yu.edu.jo/" },
+                { icon: Shield, title: "دليل الطالب", href: "https://www.yu.edu.jo/studentguide/" },
+                { icon: Bus, title: "خارطة الجامعة", href: "https://www.google.com/maps/d/viewer?ll=32.535473255313704%2C35.86087269933459&z=16&mid=1H_HAua3JvdJO6rZBNM4hf-FdQVHnWbk" },
+                { icon: Library, title: "المكتبة", href: "https://library.yu.edu.jo" },
+              ].map((service, index) => (
               <Link key={index} href={service.href}>
                 <Card className="h-full hover:shadow-md transition-all duration-200 hover:-translate-y-1 border-border/50 cursor-pointer text-center">
                   <CardContent className="p-4">
@@ -507,7 +511,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-8">
-            <Link href="/services">
+            <Link href="https://www.yu.edu.jo/index.php">
               <Button variant="outline" size="lg">
                 عرض جميع الخدمات
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -548,9 +552,8 @@ export default function HomePage() {
               <h4 className="font-semibold text-foreground mb-4">روابط سريعة</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/dashboard" className="text-muted-foreground hover:text-foreground">نظام معلومات الطالب</Link></li>
-                <li><Link href="/registration" className="text-muted-foreground hover:text-foreground">تسجيل المواد</Link></li>
-                <li><Link href="/grades" className="text-muted-foreground hover:text-foreground">العلامات</Link></li>
-                <li><Link href="/schedule" className="text-muted-foreground hover:text-foreground">الجدول الدراسي</Link></li>
+                <li><Link href="https://admreg.yu.edu.jo/" className="text-muted-foreground hover:text-foreground">القبول والتسجيل</Link></li>
+                <li><Link href="https://www.yu.edu.jo/index.php/RegTime/" className="text-muted-foreground hover:text-foreground">الجدول الدراسي</Link></li>
               </ul>
             </div>
 
@@ -558,10 +561,10 @@ export default function HomePage() {
             <div>
               <h4 className="font-semibold text-foreground mb-4">الخدمات</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/services" className="text-muted-foreground hover:text-foreground">دليل الخدمات</Link></li>
-                <li><Link href="/faculty" className="text-muted-foreground hover:text-foreground">أعضاء هيئة التدريس</Link></li>
-                <li><Link href="/library" className="text-muted-foreground hover:text-foreground">المكتبة</Link></li>
-                <li><Link href="/help" className="text-muted-foreground hover:text-foreground">مركز المساعدة</Link></li>
+                <li><Link href="https://www.yu.edu.jo/index.php" className="text-muted-foreground hover:text-foreground">دليل الخدمات</Link></li>
+                <li><Link href="https://fmd.yu.edu.jo/" className="text-muted-foreground hover:text-foreground">أعضاء هيئة التدريس</Link></li>
+                <li><Link href="https://library.yu.edu.jo" className="text-muted-foreground hover:text-foreground">المكتبة</Link></li>
+                <li><Link href="https://www.yu.edu.jo/index.php/faq-ar" className="text-muted-foreground hover:text-foreground">مركز المساعدة</Link></li>
               </ul>
             </div>
 
@@ -590,9 +593,9 @@ export default function HomePage() {
               © 2026 جامعة اليرموك. جميع الحقوق محفوظة.
             </p>
             <div className="flex items-center gap-4 text-sm">
-              <Link href="/privacy" className="text-muted-foreground hover:text-foreground">سياسة الخصوصية</Link>
-              <Link href="/terms" className="text-muted-foreground hover:text-foreground">الشروط والأحكام</Link>
-              <Link href="/accessibility" className="text-muted-foreground hover:text-foreground">إمكانية الوصول</Link>
+              <Link href="https://www.yu.edu.jo/index.php" className="text-muted-foreground hover:text-foreground">سياسة الخصوصية</Link>
+              <Link href="https://law.yu.edu.jo/" className="text-muted-foreground hover:text-foreground">الشروط والأحكام</Link>
+              <Link href="https://www.yu.edu.jo/index.php/faq-ar" className="text-muted-foreground hover:text-foreground">إمكانية الوصول</Link>
             </div>
           </div>
         </div>

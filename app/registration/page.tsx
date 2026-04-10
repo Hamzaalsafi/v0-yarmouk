@@ -62,109 +62,74 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 
-// Available Courses
-const availableCourses = [
-  {
-    id: "IE401-1",
-    code: "IE 401",
-    name: "بحوث العمليات",
-    section: "1",
-    instructor: "د. أحمد الخطيب",
-    time: "أحد، ثلاثاء 09:00 - 10:30",
-    room: "H201",
-    credits: 3,
-    capacity: 40,
-    enrolled: 35,
-    prerequisites: ["IE 301", "MATH 203"],
-    prerequisitesMet: true,
-    department: "الهندسة الصناعية",
-    level: "4"
-  },
-  {
-    id: "IE401-2",
-    code: "IE 401",
-    name: "بحوث العمليات",
-    section: "2",
-    instructor: "د. سمير العبادي",
-    time: "اثنين، أربعاء 11:00 - 12:30",
-    room: "H105",
-    credits: 3,
-    capacity: 40,
-    enrolled: 40,
-    prerequisites: ["IE 301", "MATH 203"],
-    prerequisitesMet: true,
-    department: "الهندسة الصناعية",
-    level: "4"
-  },
-  {
-    id: "IE403-1",
-    code: "IE 403",
-    name: "إدارة الجودة",
-    section: "1",
-    instructor: "د. محمد النجار",
-    time: "أحد، ثلاثاء 11:00 - 12:30",
-    room: "H301",
-    credits: 3,
-    capacity: 35,
-    enrolled: 28,
-    prerequisites: ["IE 302"],
-    prerequisitesMet: true,
-    department: "الهندسة الصناعية",
-    level: "4"
-  },
-  {
-    id: "IE405-1",
-    code: "IE 405",
-    name: "هندسة العوامل البشرية",
-    section: "1",
-    instructor: "د. ليلى حسن",
-    time: "اثنين، أربعاء 09:00 - 10:30",
-    room: "H102",
-    credits: 3,
-    capacity: 30,
-    enrolled: 22,
-    prerequisites: ["IE 201"],
-    prerequisitesMet: true,
-    department: "الهندسة الصناعية",
-    level: "4"
-  },
-  {
-    id: "IE407-1",
-    code: "IE 407",
-    name: "تخطيط وجدولة الإنتاج",
-    section: "1",
-    instructor: "د. خالد المصري",
-    time: "أحد، ثلاثاء 14:00 - 15:30",
-    room: "H205",
-    credits: 3,
-    capacity: 35,
-    enrolled: 30,
-    prerequisites: ["IE 305", "IE 401"],
-    prerequisitesMet: false,
-    department: "الهندسة الصناعية",
-    level: "4"
-  },
-  {
-    id: "MATH301-1",
-    code: "MATH 301",
-    name: "الإحصاء الهندسي",
-    section: "1",
-    instructor: "د. عمر الزعبي",
-    time: "اثنين، أربعاء 14:00 - 15:30",
-    room: "S101",
-    credits: 3,
-    capacity: 50,
-    enrolled: 42,
-    prerequisites: ["MATH 202"],
-    prerequisitesMet: true,
-    department: "الرياضيات",
-    level: "3"
-  },
+// Available Courses (updated from latest department list)
+const courseCatalog = [
+  { code: "IE 100", section: "1", name: "تأهيل وظيفي (1)", credits: 0, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
+  { code: "IE 200", section: "1", name: "تأهيل وظيفي (2)", credits: 0, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
+  { code: "IE 205", section: "1", name: "المشاغل الهندسية", credits: 2, days: "حد ثل", start: "14:30", end: "17:30", instructor: "سنان عبيدات", room: "مشاغل" },
+  { code: "IE 205", section: "2", name: "المشاغل الهندسية", credits: 2, days: "حد ثل", start: "11:30", end: "14:30", instructor: "محمد يونس علي الدراغمة", room: "مشاغل" },
+  { code: "IE 205", section: "3", name: "المشاغل الهندسية", credits: 2, days: "ثن ربع", start: "14:30", end: "17:30", instructor: "احمد عبدالحفيظ المومني", room: "مشاغل" },
+  { code: "IE 211", section: "1", name: "القياسات", credits: 2, days: "ثن ربع", start: "19:30", end: "20:30", instructor: "محمد يونس علي الدراغمة", room: "Online" },
+  { code: "IE 213", section: "1", name: "مختبرالقياسات", credits: 1, days: "حد", start: "14:30", end: "17:30", instructor: "عبدالله الخضر", room: "مختبر" },
+  { code: "IE 213", section: "2", name: "مختبرالقياسات", credits: 1, days: "خمس", start: "14:30", end: "17:30", instructor: "سنان عبيدات", room: "مختبر" },
+  { code: "IE 251", section: "1", name: "اساسيات الاحتمالات والاحصاء للمهندسين", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "عبدالله الخضر", room: "ه 403" },
+  { code: "IE 262", section: "1", name: "علوم المواد الهندسية", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "محمد يونس علي الدراغمة", room: "ه 403" },
+  { code: "IE 300", section: "1", name: "تأهيل وظيفي (3)", credits: 0, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
+  { code: "IE 318", section: "1", name: "قياس وتحليل العمل", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "احمد عبدالحفيظ المومني", room: "هج 215" },
+  { code: "IE 354", section: "1", name: "الإحصاء الهندسي التطبيقي", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "اسيل فايز خنفر", room: "ه 403" },
+  { code: "IE 358", section: "1", name: "بحوث عمليات (1)", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "سنان عبيدات", room: "هج 322" },
+  { code: "IE 361", section: "1", name: "إدارة المشاريع الهندسية", credits: 3, days: "سبت ثن ربع", start: "19:30", end: "20:30", instructor: "الاء طويق", room: "Online" },
+  { code: "IE 364", section: "1", name: "تصميم أجزاء الاَلات", credits: 3, days: "حد ثل خمس", start: "11:30", end: "12:30", instructor: "عمار احمد الروسان", room: "هج 321" },
+  { code: "IE 366", section: "1", name: "عمليات التصنيع (1)", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "ايمن محمد زيوت", room: "هج 210" },
+  { code: "IE 422", section: "1", name: "هندسة العوامل البشرية", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "الاء طويق", room: "هج 322" },
+  { code: "IE 423", section: "1", name: "مختبر هندسة العوامل البشرية", credits: 1, days: "ثل", start: "14:30", end: "17:30", instructor: "عبدالله الخضر", room: "مختبر" },
+  { code: "IE 432", section: "1", name: "اقتصاد هندسي", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "اسيل فايز خنفر", room: "هج 321" },
+  { code: "IE 432", section: "4", name: "اقتصاد هندسي", credits: 3, days: "ثن ربع", start: "12:30", end: "14:00", instructor: "محمد يونس علي الدراغمة", room: "هج 321" },
+  { code: "IE 454", section: "1", name: "ضبط الجودة الإحصائي", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "احمد عبدالحفيظ المومني", room: "L 203" },
+  { code: "IE 458", section: "1", name: "نظم المحاكاة", credits: 3, days: "", start: "", end: "", instructor: "احمد عبدالحفيظ المومني", room: "مكتب" },
+  { code: "IE 466", section: "1", name: "عمليات التصنيع (2)", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "ايمن محمد زيوت", room: "ه 502" },
+  { code: "IE 478", section: "1", name: "الوثوقية وادامة الصيانة", credits: 3, days: "حد ثل خمس", start: "09:30", end: "10:30", instructor: "سنان عبيدات", room: "هج 322" },
+  { code: "IE 500", section: "3", name: "التدريب الميداني", credits: 3, days: "حد ثل خمس", start: "08:30", end: "17:30", instructor: "محمد يونس علي الدراغمة", room: "ميدان" },
+  { code: "IE 525", section: "1", name: "هندسة السلامة المهنية", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "الاء طويق", room: "هج 322" },
+  { code: "IE 546", section: "1", name: "تخطيط المنشآت", credits: 3, days: "حد ثل خمس", start: "10:30", end: "11:30", instructor: "عبدالله الخضر", room: "B 101" },
+  { code: "IE 568", section: "1", name: "تصميم المنتج", credits: 3, days: "حد ثل خمس", start: "08:30", end: "09:30", instructor: "غازي مقابله", room: "قاعة" },
+  { code: "IE 572", section: "1", name: "تكنولوجيا الطاقة", credits: 3, days: "حد ثل خمس", start: "13:30", end: "14:30", instructor: "امجد عبدالرحمن السكارنة", room: "هج 321" },
+  { code: "IE 599", section: "1", name: "موضوعات خاصة في الهندسة الصناعية", credits: 3, days: "حد ثل خمس", start: "12:30", end: "13:30", instructor: "عمار احمد الروسان", room: "هج 321" },
+  { code: "IEM 651", section: "1", name: "البحث والتحليل الاحصائي", credits: 3, days: "خمس", start: "14:30", end: "17:30", instructor: "ايمن محمد زيوت", room: "مختبر" },
 ]
+
+const getLevelFromCode = (code: string) => {
+  if (code.startsWith("IEM")) return "5"
+  const numeric = Number(code.replace(/[^0-9]/g, "").slice(0, 3))
+  if (numeric >= 500) return "5"
+  if (numeric >= 400) return "4"
+  if (numeric >= 300) return "3"
+  if (numeric >= 200) return "2"
+  return "1"
+}
+
+const availableCourses = courseCatalog.map((course, index) => ({
+  id: `${course.code.replace(/\s/g, "")}-${course.section}`,
+  code: course.code,
+  name: course.name,
+  section: course.section,
+  instructor: course.instructor,
+  time: course.days ? `${course.days} ${course.start} - ${course.end}` : "يحدد لاحقاً",
+  room: course.room,
+  credits: course.credits,
+  capacity: course.credits <= 1 ? 25 : 40,
+  enrolled: course.credits <= 1 ? 10 + (index % 10) : 18 + (index % 20),
+  prerequisites: [],
+  prerequisitesMet: true,
+  department: "الهندسة الصناعية",
+  level: getLevelFromCode(course.code),
+}))
 
 // Sidebar Navigation
 const sidebarNav = [
   { icon: Home, title: "الرئيسية", href: "/dashboard", active: false },
+  { icon: ClipboardList, title: "المعلومات الأساسية", href: "/basic-info", active: false },
+  { icon: Calendar, title: "أوقات التسجيل", href: "/basic-info?tab=registration-times", active: false },
   { icon: ClipboardList, title: "تسجيل المواد", href: "/registration", active: true },
   { icon: Calendar, title: "الجدول الدراسي", href: "/schedule", active: false },
   { icon: GraduationCap, title: "العلامات", href: "/grades", active: false },
@@ -438,7 +403,6 @@ export default function RegistrationPage() {
                         <SelectContent>
                           <SelectItem value="all">جميع الأقسام</SelectItem>
                           <SelectItem value="الهندسة الصناعية">الهندسة الصناعية</SelectItem>
-                          <SelectItem value="الرياضيات">الرياضيات</SelectItem>
                         </SelectContent>
                       </Select>
                       <Select value={selectedLevel} onValueChange={setSelectedLevel}>
@@ -451,6 +415,7 @@ export default function RegistrationPage() {
                           <SelectItem value="2">السنة 2</SelectItem>
                           <SelectItem value="3">السنة 3</SelectItem>
                           <SelectItem value="4">السنة 4</SelectItem>
+                          <SelectItem value="5">السنة 5 / دراسات عليا</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -462,7 +427,7 @@ export default function RegistrationPage() {
                   <Zap className="h-4 w-4 text-primary" />
                   <AlertTitle>وضع التسجيل السريع</AlertTitle>
                   <AlertDescription>
-                    بناءً على خطتك الدراسية، نقترح عليك المواد التالية: بحوث العمليات، إدارة الجودة، هندسة العوامل البشرية
+                    بناءً على خطتك الدراسية، نقترح عليك المواد التالية: قياس وتحليل العمل، الإحصاء الهندسي التطبيقي، بحوث عمليات (1)
                   </AlertDescription>
                 </Alert>
 

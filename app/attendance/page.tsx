@@ -94,6 +94,8 @@ const attendanceData = [
 // Sidebar Navigation
 const sidebarNav = [
   { icon: Home, title: "الرئيسية", href: "/dashboard", active: false },
+  { icon: ClipboardList, title: "المعلومات الأساسية", href: "/basic-info", active: false },
+  { icon: Calendar, title: "أوقات التسجيل", href: "/basic-info?tab=registration-times", active: false },
   { icon: ClipboardList, title: "تسجيل المواد", href: "/registration", active: false },
   { icon: Calendar, title: "الجدول الدراسي", href: "/schedule", active: false },
   { icon: GraduationCap, title: "العلامات", href: "/grades", active: false },
