@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   GraduationCap, 
   ChevronDown,
@@ -107,8 +108,8 @@ function getGradeColor(grade: string | null) {
   if (!grade) return "bg-muted text-muted-foreground"
   if (grade.startsWith("A")) return "bg-accent text-accent-foreground"
   if (grade.startsWith("B")) return "bg-primary text-primary-foreground"
-  if (grade.startsWith("C")) return "bg-[oklch(0.65_0.12_45)] text-white"
-  if (grade.startsWith("D")) return "bg-[oklch(0.75_0.15_70)] text-[oklch(0.20_0.02_70)]"
+  if (grade.startsWith("C")) return "bg-primary/80 text-primary-foreground"
+  if (grade.startsWith("D")) return "bg-secondary text-secondary-foreground"
   return "bg-destructive text-destructive-foreground"
 }
 
@@ -147,8 +148,14 @@ export default function GradesPage() {
       <aside className="hidden lg:flex flex-col w-64 bg-card border-l border-border">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-primary-foreground" />
+            <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+              <Image
+                src="/Yarmouk_University_logo.png"
+                alt="Yarmouk University logo"
+                fill
+                sizes="40px"
+                className="object-contain"
+              />
             </div>
             <div>
               <h1 className="font-bold text-foreground text-sm leading-tight">جامعة اليرموك</h1>
@@ -182,8 +189,14 @@ export default function GradesPage() {
           <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                  <Image
+                    src="/Yarmouk_University_logo.png"
+                    alt="Yarmouk University logo"
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-foreground">جامعة اليرموك</span>
               </Link>

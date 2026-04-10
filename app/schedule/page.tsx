@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   GraduationCap, 
   Home,
@@ -42,8 +43,8 @@ const scheduleData = [
     day: "الاثنين",
     dayEn: "Monday",
     courses: [
-      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-[oklch(0.65_0.12_45)]" },
-      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-[oklch(0.50_0.08_280)]" },
+      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-primary/85" },
+      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-accent/85" },
     ]
   },
   {
@@ -58,8 +59,8 @@ const scheduleData = [
     day: "الأربعاء",
     dayEn: "Wednesday",
     courses: [
-      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-[oklch(0.65_0.12_45)]" },
-      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-[oklch(0.50_0.08_280)]" },
+      { code: "IE 405", name: "هندسة العوامل البشرية", time: "09:00 - 10:30", room: "H102", instructor: "د. ليلى حسن", color: "bg-primary/85" },
+      { code: "MATH 301", name: "الإحصاء الهندسي", time: "14:00 - 15:30", room: "S101", instructor: "د. عمر الزعبي", color: "bg-accent/85" },
     ]
   },
   {
@@ -106,8 +107,14 @@ export default function SchedulePage() {
       <aside className="hidden lg:flex flex-col w-64 bg-card border-l border-border">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-primary-foreground" />
+            <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+              <Image
+                src="/Yarmouk_University_logo.png"
+                alt="Yarmouk University logo"
+                fill
+                sizes="40px"
+                className="object-contain"
+              />
             </div>
             <div>
               <h1 className="font-bold text-foreground text-sm leading-tight">جامعة اليرموك</h1>
@@ -141,8 +148,14 @@ export default function SchedulePage() {
           <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                  <Image
+                    src="/Yarmouk_University_logo.png"
+                    alt="Yarmouk University logo"
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-foreground">جامعة اليرموك</span>
               </Link>
@@ -355,8 +368,8 @@ export default function SchedulePage() {
                 {[
                   { name: "بحوث العمليات", code: "IE 401", color: "bg-primary" },
                   { name: "إدارة الجودة", code: "IE 403", color: "bg-accent" },
-                  { name: "هندسة العوامل البشرية", code: "IE 405", color: "bg-[oklch(0.65_0.12_45)]" },
-                  { name: "الإحصاء الهندسي", code: "MATH 301", color: "bg-[oklch(0.50_0.08_280)]" },
+                  { name: "هندسة العوامل البشرية", code: "IE 405", color: "bg-primary/85" },
+                  { name: "الإحصاء الهندسي", code: "MATH 301", color: "bg-accent/85" },
                   { name: "مشروع التخرج 1", code: "IE 402", color: "bg-destructive" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-2">

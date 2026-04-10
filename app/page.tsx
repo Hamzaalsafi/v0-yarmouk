@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   Search, 
   GraduationCap, 
@@ -59,21 +60,21 @@ const quickServices = [
     title: "تسجيل المواد", 
     subtitle: "Course Registration",
     href: "/registration",
-    color: "bg-[oklch(0.55_0.15_160)]"
+    color: "bg-primary/90"
   },
   { 
     icon: FileText, 
     title: "جدول الامتحانات", 
     subtitle: "Exam Schedule",
     href: "/exams",
-    color: "bg-[oklch(0.65_0.12_45)]"
+    color: "bg-accent"
   },
   { 
     icon: GraduationCap, 
     title: "العلامات", 
     subtitle: "Grades",
     href: "/grades",
-    color: "bg-[oklch(0.50_0.08_280)]"
+    color: "bg-primary"
   },
   { 
     icon: Target, 
@@ -87,7 +88,7 @@ const quickServices = [
     title: "الإعلانات", 
     subtitle: "Announcements",
     href: "/announcements",
-    color: "bg-[oklch(0.55_0.2_25)]"
+    color: "bg-accent/90"
   },
   { 
     icon: Users, 
@@ -167,8 +168,14 @@ export default function HomePage() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-primary-foreground" />
+              <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                <Image
+                  src="/Yarmouk_University_logo.png"
+                  alt="Yarmouk University logo"
+                  fill
+                  sizes="40px"
+                  className="object-contain"
+                />
               </div>
               <div>
                 <h1 className="font-bold text-foreground text-lg leading-tight">جامعة اليرموك</h1>
@@ -233,8 +240,19 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-16 lg:py-24">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden text-primary-foreground py-16 lg:py-24">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/YU_background_video.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/45" />
+
+        <div className="container relative z-10 mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-balance">
               مرحباً بك في البوابة الإلكترونية
@@ -251,7 +269,7 @@ export default function HomePage() {
                 placeholder="ابحث عن الخدمات، المواد، الأساتذة..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pr-12 pl-4 py-6 text-lg bg-background text-foreground rounded-xl border-0 shadow-lg"
+                className="w-full pr-12 pl-4 py-6 text-lg bg-background/95 text-foreground rounded-xl border-0 shadow-lg"
               />
               {searchQuery && (
                 <Link href={`/search?q=${encodeURIComponent(searchQuery)}`}>
@@ -327,8 +345,8 @@ export default function HomePage() {
                       <div className="flex items-start gap-4">
                         <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
                           announcement.type === 'urgent' ? 'bg-destructive' :
-                          announcement.type === 'important' ? 'bg-[oklch(var(--warning))]' :
-                          'bg-[oklch(var(--info))]'
+                          announcement.type === 'important' ? 'bg-accent' :
+                          'bg-primary/70'
                         }`} />
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
@@ -506,8 +524,14 @@ export default function HomePage() {
             {/* Logo & Info */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                  <Image
+                    src="/Yarmouk_University_logo.png"
+                    alt="Yarmouk University logo"
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold text-foreground">جامعة اليرموك</h3>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   GraduationCap, 
   Home,
@@ -109,7 +110,7 @@ function getStatusColor(status: "excellent" | "good" | "warning" | "danger") {
   switch (status) {
     case "excellent": return "text-accent"
     case "good": return "text-primary"
-    case "warning": return "text-[oklch(0.75_0.15_70)]"
+    case "warning": return "text-accent"
     case "danger": return "text-destructive"
   }
 }
@@ -118,7 +119,7 @@ function getStatusBadge(status: "excellent" | "good" | "warning" | "danger") {
   switch (status) {
     case "excellent": return <Badge className="bg-accent/10 text-accent border-0">ممتاز</Badge>
     case "good": return <Badge className="bg-primary/10 text-primary border-0">جيد</Badge>
-    case "warning": return <Badge className="bg-[oklch(0.75_0.15_70)]/10 text-[oklch(0.55_0.15_70)] border-0">تحذير</Badge>
+    case "warning": return <Badge className="bg-accent/10 text-accent border-0">تحذير</Badge>
     case "danger": return <Badge variant="destructive">خطر</Badge>
   }
 }
@@ -126,7 +127,7 @@ function getStatusBadge(status: "excellent" | "good" | "warning" | "danger") {
 function getProgressColor(absences: number, maxAbsences: number) {
   const ratio = absences / maxAbsences
   if (ratio >= 0.8) return "bg-destructive"
-  if (ratio >= 0.6) return "bg-[oklch(0.75_0.15_70)]"
+  if (ratio >= 0.6) return "bg-accent"
   if (ratio >= 0.4) return "bg-primary"
   return "bg-accent"
 }
@@ -143,8 +144,14 @@ export default function AttendancePage() {
       <aside className="hidden lg:flex flex-col w-64 bg-card border-l border-border">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-primary-foreground" />
+            <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+              <Image
+                src="/Yarmouk_University_logo.png"
+                alt="Yarmouk University logo"
+                fill
+                sizes="40px"
+                className="object-contain"
+              />
             </div>
             <div>
               <h1 className="font-bold text-foreground text-sm leading-tight">جامعة اليرموك</h1>
@@ -178,8 +185,14 @@ export default function AttendancePage() {
           <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                  <Image
+                    src="/Yarmouk_University_logo.png"
+                    alt="Yarmouk University logo"
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-foreground">جامعة اليرموك</span>
               </Link>
@@ -283,8 +296,8 @@ export default function AttendancePage() {
             <Card className="border-border/50">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[oklch(0.75_0.15_70)]/10 rounded-lg flex items-center justify-center">
-                    <AlertTriangle className="h-5 w-5 text-[oklch(0.55_0.15_70)]" />
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                    <AlertTriangle className="h-5 w-5 text-accent" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-foreground">{coursesAtRisk}</p>
@@ -320,7 +333,7 @@ export default function AttendancePage() {
                 <Card 
                   key={index} 
                   className={`border-border/50 ${
-                    course.status === "warning" ? "border-[oklch(0.75_0.15_70)]/30 bg-[oklch(0.75_0.15_70)]/5" :
+                    course.status === "warning" ? "border-accent/30 bg-accent/5" :
                     course.status === "danger" ? "border-destructive/30 bg-destructive/5" : ""
                   }`}
                 >
@@ -375,9 +388,9 @@ export default function AttendancePage() {
 
                     {/* Warning Message */}
                     {course.status === "warning" && (
-                      <div className="mt-4 p-3 bg-[oklch(0.75_0.15_70)]/10 rounded-lg flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-[oklch(0.55_0.15_70)] flex-shrink-0 mt-0.5" />
-                        <p className="text-sm text-[oklch(0.40_0.10_70)]">
+                      <div className="mt-4 p-3 bg-accent/10 rounded-lg flex items-start gap-2">
+                        <AlertTriangle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-accent">
                           تحذير: اقتربت من الحد الأقصى للغياب. غياب واحد إضافي قد يؤدي للحرمان من المادة.
                         </p>
                       </div>

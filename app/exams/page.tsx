@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   GraduationCap, 
   Home,
@@ -164,8 +165,14 @@ export default function ExamsPage() {
       <aside className="hidden lg:flex flex-col w-64 bg-card border-l border-border">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-primary-foreground" />
+            <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+              <Image
+                src="/Yarmouk_University_logo.png"
+                alt="Yarmouk University logo"
+                fill
+                sizes="40px"
+                className="object-contain"
+              />
             </div>
             <div>
               <h1 className="font-bold text-foreground text-sm leading-tight">جامعة اليرموك</h1>
@@ -199,8 +206,14 @@ export default function ExamsPage() {
           <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
+                  <Image
+                    src="/Yarmouk_University_logo.png"
+                    alt="Yarmouk University logo"
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-foreground">جامعة اليرموك</span>
               </Link>
@@ -330,8 +343,8 @@ export default function ExamsPage() {
             <Card className="border-border/50">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[oklch(0.75_0.15_70)]/10 rounded-lg flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-[oklch(0.55_0.15_70)]" />
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-accent" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-foreground">
@@ -402,7 +415,7 @@ export default function ExamsPage() {
                         <div className="lg:text-center">
                           <div className={`w-20 h-20 rounded-full flex flex-col items-center justify-center mx-auto ${
                             exam.daysLeft <= 7 ? 'bg-destructive text-destructive-foreground' :
-                            exam.daysLeft <= 14 ? 'bg-[oklch(0.75_0.15_70)] text-[oklch(0.20_0.02_70)]' :
+                            exam.daysLeft <= 14 ? 'bg-accent/15 text-accent' :
                             'bg-primary/10 text-primary'
                           }`}>
                             <span className="text-2xl font-bold">{exam.daysLeft}</span>
