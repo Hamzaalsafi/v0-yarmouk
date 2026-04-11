@@ -28,7 +28,6 @@ import {
   Target,
   BarChart3,
   User,
-  Settings,
   Home,
   Mail,
   Eye,
@@ -76,10 +75,11 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+import { SidebarUserMenu } from "@/components/sidebar-user-menu"
 
 // ============ Student Data ============
 const studentData = {
-  name: "بركة محمود البطاينة",
+  name: "محمد",
   id: "2021105432",
   college: "كلية الهندسة",
   major: "الهندسة الصناعية",
@@ -294,9 +294,9 @@ export default function DashboardPage() {
   const coursesAtRisk = attendanceData.filter(c => c.status === "warning").length
 
   return (
-    <div className="min-h-screen max-h-screen bg-background flex">
+    <div className="fixed inset-0 overflow-hidden bg-background flex">
       {/* Sidebar - Desktop */}
-      <aside className="hidden relative min-y-screen max-y-screen lg:flex flex-col w-64 bg-card border-l border-border">
+      <aside className="hidden lg:flex sticky top-0 h-screen shrink-0 flex-col w-64 bg-card border-l border-border">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-3">
             <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
@@ -315,7 +315,7 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {sidebarNav.map((item) => (
             <Link
               key={item.title}
@@ -334,51 +334,14 @@ export default function DashboardPage() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-border">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors">
-                <div className="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center">
-                  <User className="h-5 w-5 text-primary" />
-                </div>
-                <div className="flex-1 text-right">
-                  <p className="text-sm font-medium text-foreground truncate">{studentData.name}</p>
-                  <p className="text-xs text-primary">{studentData.level}</p>
-                  <p className="text-xs text-muted-foreground">{studentData.id}</p>
-                </div>
-                <ChevronDown className="h-4 w-4 text-muted-foreground" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuItem asChild>
-                <Link href="/basic-info">
-                <User className="h-4 w-4 ml-2" />
-                الملف الشخصي
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/basic-info">
-                <Settings className="h-4 w-4 ml-2" />
-                الإعدادات
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive" asChild>
-                <Link href="/">
-                <LogOut className="h-4 w-4 ml-2" />
-                تسجيل الخروج
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+
       </aside>
 
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl">
+          <aside className="fixed right-0 top-0 bottom-0 w-72 bg-card border-l border-border shadow-xl flex flex-col">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
@@ -396,7 +359,7 @@ export default function DashboardPage() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <nav className="p-4 space-y-1">
+            <nav className="flex-1 overflow-y-auto p-4 space-y-1">
               {sidebarNav.map((item) => (
                 <Link
                   key={item.title}
@@ -415,6 +378,39 @@ export default function DashboardPage() {
                 </Link>
               ))}
             </nav>
+
+            <div className="p-4 border-t border-border">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors">
+                    <div className="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center">
+                      <User className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 text-right">
+                      <p className="text-sm font-medium text-foreground truncate">{studentData.name}</p>
+                      <p className="text-xs text-primary">{studentData.level}</p>
+                      <p className="text-xs text-muted-foreground">{studentData.id}</p>
+                    </div>
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link href="/basic-info" onClick={() => setSidebarOpen(false)}>
+                      <User className="h-4 w-4 ml-2" />
+                      الملف الشخصي
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="text-destructive" asChild>
+                    <Link href="/" onClick={() => setSidebarOpen(false)}>
+                      <LogOut className="h-4 w-4 ml-2" />
+                      تسجيل الخروج
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </aside>
         </div>
       )}
@@ -449,7 +445,7 @@ export default function DashboardPage() {
       </Dialog>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-x-auto flex flex-col min-h-screen">
+      <div className="flex-1 min-w-0 h-screen flex flex-col overflow-hidden">
         {/* Top Bar */}
         <header className="bg-card border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-16 px-4 lg:px-6">
@@ -463,24 +459,21 @@ export default function DashboardPage() {
                 <Menu className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="font-semibold text-foreground">مرحباً، {studentData.name.split(' ')[0]}</h1>
-                <p className="text-xs text-muted-foreground">{studentData.currentSemester}</p>
-                <p className="text-xs text-primary">المتبقي للتخرج: {studentData.remainingCredits} ساعة</p>
+                <SidebarUserMenu />
               </div>
             </div>
 
             <div className="flex items-center gap-2">
               <Link href="https://www.yu.edu.jo/index.php/en/" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-1">
-                <Globe className="h-4 w-4" />
-                <span>EN</span>
-              </Button>
+                <Button variant="ghost" size="sm" className="hidden sm:flex items-center gap-1">
+                  <Globe className="h-4 w-4" />
+                  <span>EN</span>
+                </Button>
               </Link>
-              <Link href="https://www.yu.edu.jo/index.php/ann-ar" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
-              </Button>
+              <Link href="/change-password">
+                <Button variant="ghost" size="sm" className="hidden sm:flex">
+                  تغيير كلمة السر
+                </Button>
               </Link>
               <Link href="/">
                 <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
@@ -493,7 +486,7 @@ export default function DashboardPage() {
         </header>
 
         {/* Page Content - Tabs */}
-        <main className="flex-1 p-4 lg:p-6 overflow-auto">
+        <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
           <Tabs defaultValue="overview" className="space-y-6">
             <TabsList className="flex justify-between w-full overflow-auto">
               <TabsTrigger value="overview">نظرة عامة</TabsTrigger>
@@ -705,7 +698,7 @@ export default function DashboardPage() {
                   <p className="text-sm opacity-90">من 100</p>
                   <div className="flex items-center justify-center gap-1 mt-3">
                     <CheckCircle2 className="h-4 w-4" />
-                    <span className="text-sm">تقدير جيد جداً</span>
+                    <span className="text-sm">تقدير امتياز </span>
                   </div>
                 </CardContent>
               </Card>

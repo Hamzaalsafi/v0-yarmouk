@@ -62,8 +62,20 @@ const semesters = [
   { value: "2024-1", label: "الفصل الأول 2024/2025", current: false },
 ]
 
+type CourseGrade = {
+  code: string
+  name: string
+  credits: number
+  midterm: number | null
+  coursework: number | null
+  final: number | null
+  total: number | null
+  grade: number | null
+  status: "in-progress" | "complete"
+}
+
 // Grades Data
-const gradesData: Record<string, typeof currentSemesterGrades> = {
+const gradesData: Record<string, CourseGrade[]> = {
   "2025-2": [
     { code: "IE 318", name: "قياس وتحليل العمل", credits: 3, midterm: 42, coursework: 18, final: null, total: null, grade: null, status: "in-progress" },
     { code: "IE 358", name: "بحوث عمليات (1)", credits: 3, midterm: 38, coursework: 17, final: null, total: null, grade: null, status: "in-progress" },
@@ -80,7 +92,7 @@ const gradesData: Record<string, typeof currentSemesterGrades> = {
   ],
 }
 
-const currentSemesterGrades = gradesData["2025-2"]
+const currentSemesterGrades: CourseGrade[] = gradesData["2025-2"]
 
 // GPA Data
 const gpaData = {
