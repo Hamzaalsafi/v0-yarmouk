@@ -34,11 +34,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SidebarUserMenu } from "@/components/sidebar-user-menu"
 
 const studentData = {
-  name: "محمد",
-  id: "20210000",
+  name: "بركة محمود البطاينة",
+  id: "2021986008",
   college: "كلية الهندسة",
   major: "الهندسة الصناعية",
-  level: "السنة الخامسة",
+  level: "السنة الرابعة",
   currentSemester: "الفصل الثاني 2025/2026",
   totalCredits: 98,
   remainingCredits: 42,

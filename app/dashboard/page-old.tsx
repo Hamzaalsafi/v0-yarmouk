@@ -54,8 +54,8 @@ import {
 
 // Student Data
 const studentData = {
-  name: "محمد",
-  id: "2021105432",
+  name: "بركة محمود البطاينة",
+  id: "2021986008",
   college: "كلية الهندسة",
   major: "الهندسة الصناعية",
   level: "السنة الرابعة",

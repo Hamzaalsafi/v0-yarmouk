@@ -15,9 +15,9 @@ type SidebarUserMenuProps = {
 }
 
 const sidebarStudent = {
-  name: "محمد",
+  name: "بركة محمود البطاينة",
   level: "السنة الرابعة",
-  id: "2021105432",
+  id: "2021986008",
 }
 
 export function SidebarUserMenu({ onNavigate }: SidebarUserMenuProps) {
